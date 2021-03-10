@@ -1,0 +1,106 @@
+{
+    "_comment_to_be_removed": "Declare all labels here, section wise. Will follow underscores conventation for word seperation",
+    "header": {
+        "mon_app_title": "TIBCO BusinessWorks Container Edition"
+    },
+    "left_menu_bar": [
+        {
+            "id": "container",
+            "name": "Containers",
+            "order": 1,
+            "sref": "appnodes",
+            "isShow": false
+        },
+        {
+            "id": "applications",
+            "name": "Applications",
+            "order": 2,
+            "sref": "applications",
+            "isShow": true
+        }
+    ],
+    "view_type_button": [
+        {
+            "id": "default",
+            "name": "Default",
+            "order": 1,
+            "isShow": true
+        },
+        {
+            "id": "graph",
+            "name": "Graph",
+            "order": 2,
+            "isShow": false
+        },
+        {
+            "id": "config",
+            "name": "Config",
+            "order": 2,
+            "isShow": true
+        }
+    ],
+    "dashboard": {},
+    "application": {
+        "application_title": "Applications",
+        "Application_level2_tabs": [
+            {
+                "id": "appInstances",
+                "name": "App Instances",
+                "order": 1
+            },
+            {
+                "id": "endPoints",
+                "name": "Endpoints",
+                "order": 2
+            },
+            {
+                "id": "processes",
+                "name": "Processes",
+                "order": 3
+            }
+        ],
+        "endpoint": {
+            "no_endpoint_text": "This application does not have REST, SOAP or HTTP endpoints.",
+            "type_dropDown": "Type : "
+        },
+        "processes": {
+            "container_dropDown": "Instance Id",
+            "process_instrumentation": "Process Instrumentation:",
+            "activity_instrumentation": "Activity Instrumentation"
+        },
+        "application_level2_headers": {
+            "app_instances": "App Instances",
+            "total_app_instances": "Total",
+            "running_app_instances": "Running",
+            "version": "App Version",
+            "jobs": "Jobs",
+            "job_names": [
+                "Created",
+                "Running",
+                "Faulted",
+                "Cancelled",
+                "Scheduled"
+            ],
+            "deployment_state": "Deployment State",
+            "description": "Description",
+            "stats_collection": "App Stats Collection",
+            "process_instrumentation": "Process Instrumentation",
+            "rest_doc_url": "REST Doc URL",
+            "logback_file": "Logback File",
+            "upload": "Upload",
+            "download": "Download"
+        }
+    },
+    "appnode": {
+        "appnodes_title": "Containers",
+        "add_appnode": "Add Container",
+        "remove_appnode": "Remove"
+    },
+    "grid": {
+        "no_record": "No Records Found"
+    },
+    "spinner": {
+        "loading": "Loading...",
+        "submitting": "Submitting..."
+    }
+}

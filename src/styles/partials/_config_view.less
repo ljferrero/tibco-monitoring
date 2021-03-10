@@ -1,0 +1,617 @@
+
+
+.bw_configView_header {
+}
+
+.bw_configView_contentWrapper {
+	margin-top: 18px;
+	position: relative;
+}
+
+.bw_configView_contentWrapper .bw_configView_topTabs {
+	border-bottom: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.bw_configView_main {
+	/*border: 1px solid #cccccc;
+	border-radius: 3px;
+	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+	position: relative;*/
+}
+
+.bw_configView_mainContent {
+	margin: 20px 15px 25px 15px;
+}
+
+.bw_configView_main_top {
+	position: relative;
+}
+
+.bw_configView_main_edit {
+	float: left;
+	position: relative;
+	/*margin-top: 10px;*/
+	margin-left: 10px;
+}
+
+
+.bw_configview_main_topLeft {
+	float: left;
+	line-height: 26px;
+}
+
+.bw_configView_main_operateBtn {
+	float: left;
+	margin-left: 10px;
+}
+.bw_configView_main_operateBtn > li {
+	float: left;
+}
+.bw_configView_main_more {
+	margin-left: 20px;
+	font-size: 14px;
+	line-height: 14px;
+	color: #5d5e5e;
+	position: relative;
+	cursor: pointer;
+}
+
+.bw_configView_main_operateAllBtns {
+	float: left;
+	margin-left: 12px;
+	font-size: 12px;
+	color: #888888;
+}
+.processes .bw_configView_main_operateAllBtns{
+  margin-top: 13px;
+}
+.bw_configView_main_operateAllBtns li {
+	float: left;
+	line-height: 15px;
+	margin-right: 3px;
+}
+
+.bw_configView_main_down {
+	margin-top: 25px;
+}
+
+.bw_configView_tableHeader tr:first-child {
+	font-weight: bold;
+}
+
+.bw_configView_leaf_bottomBorder {
+	width: 100%;
+	height: 1px;
+	background: #dadada;
+	box-shadow: 1px 0px 3px rgba(17, 17, 18, 0.2);
+}
+
+.bw_configView_leaf_topLabel {
+	cursor: pointer;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	padding-left: 8px;
+	color: #000000;
+	position: relative;
+}
+.bw_configView_leaf_topLabel > i{
+	/*float: left;
+	margin-top: 14px;*/
+	position: absolute;
+	top: 50%;
+	margin-top: -4px;
+}
+
+.bw_configView_leaf_topLabel > span {
+	margin-left: 14px;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.application_advanced_modal .bw_configView_leaf_topLabel > span {
+	width: 250px;
+}
+
+
+/* top level group */
+.bw_configView_childTree.level_0 >.bw_configView_leaf_topLabel {
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+/* subgroup level 1 */
+.bw_configView_childTree.level_1 > .bw_configView_leaf_topLabel {
+
+	padding-left: 20px;
+}
+
+/* subgroup level 2 */
+.bw_configView_childTree.level_2 > .bw_configView_leaf_topLabel {
+	padding-left: 40px;
+}
+
+/* subgroup level 3 */
+.bw_configView_childTree.level_3 > .bw_configView_leaf_topLabel {
+	padding-left: 60px;
+}
+
+/* subgroup level 4 */
+.bw_configView_childTree.level_4 > .bw_configView_leaf_topLabel {
+	padding-left: 80px;
+}
+
+/* subgroup level 5 */
+.bw_configView_childTree.level_5 > .bw_configView_leaf_topLabel {
+	padding-left: 100px;
+}
+
+/* subgroup level 6 */
+.bw_configView_childTree.level_6 > .bw_configView_leaf_topLabel {
+	padding-left: 120px;
+}
+.processes .bw_configView_leafTable.level_1 .process_name{
+  height: 40px;
+}
+.bw_configView_leafTable.level_1 .process_name .cell_content {
+  padding-left: 20px;
+  cursor:pointer;
+}
+
+.bw_configView_leafTable.level_2 .process_name .cell_content {
+  padding-left: 40px;
+}
+.bw_configView_leafTable.level_1 .activity_list .cell_content {
+  padding-left: 40px;
+}
+
+
+/* subtable level 1 */
+.bw_configView_leafTable.level_1 .property_name .cell_content {
+	padding-left: 20px;
+}
+
+/* subtable level 2 */
+.bw_configView_leafTable.level_2 .property_name .cell_content {
+	padding-left: 40px;
+}
+
+/* subtable level 3 */
+.bw_configView_leafTable.level_3 .property_name .cell_content {
+	padding-left: 60px;
+}
+
+/* subtable level 4 */
+.bw_configView_leafTable.level_4 .property_name .cell_content {
+	padding-left: 80px;
+}
+
+/* subtable level 5 */
+.bw_configView_leafTable.level_5 .property_name .cell_content {
+	padding-left: 100px;
+}
+
+/* subtable level 6 */
+.bw_configView_leafTable.level_6 .property_name .cell_content {
+	padding-left: 120px;
+}
+
+/* subtable level 7 */
+.bw_configView_leafTable.level_7 .property_name .cell_content {
+	padding-left: 140px;
+}
+
+.bw_configView_childTree:hover > .bw_configView_leaf_topLabel {
+	color: #267fad;
+}
+
+.bw_configView_leaf_topLabel:hover {
+	color: #267fad;
+}
+
+.bw_configView_childTree:hover > .bw_configView_leaf_topLabel .bw_icons_s-arrow-right {
+	width: 10px;
+	height: 10px;
+	background-position: -200px -380px;
+}
+
+.bw_configView_childTree:hover > .bw_configView_leaf_topLabel .bw_icons_s-arrow-down {
+	width: 10px;
+	height: 10px;
+	background-position: -180px -380px;
+}
+
+.bw_configView_leafTable {
+}
+
+/* for application config advanced modal */
+.bw_configView_leaves {
+	font-size: 12px;
+	height: 25px;
+	line-height: 25px;
+}
+.bw_configView_leaves_loop.active{
+  background: #d2e2ea;
+}
+.bw_configView_leaves:hover, .bw_configView_leaves.selected {
+	background: #f1f1f1;
+}
+.bw_configView_leaves.undraggable {
+	color: #888888;
+}
+.bw_configView_leaves.level_1 {
+  padding-left: 25px;
+}
+.bw_configView_leaves.level_2 {
+  padding-left: 45px;
+}
+.bw_configView_leaves.level_3 {
+  padding-left: 65px;
+}
+.bw_configView_leaves.level_4 {
+  padding-left: 85px;
+}
+
+.bw_configView_childTree {
+}
+.bw_configView_childTree.level_0 {
+	margin-left: 0px;
+}
+
+
+.bw_configView_leafTable tr:hover {
+	background: #d2e2ea;
+}
+
+.bw_configView_leafTable tr.selectedItem{
+  background: #d2e2ea;
+}
+
+.bw_configView_leafTable .cell_content {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	line-height: 25px;
+	min-height: 25px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.bw_configView_leafTable .cell_content_application {
+	line-height: 30px;
+	min-height: 30px;
+}
+
+.bw_configView_main_twoColumn {
+	display: table;
+	width: 100%;
+	vertical-align: middle;
+}
+
+.bw_configView_main_twoColumn .bw_configView_leftPanel_wrapper {
+	display: table-cell;
+	height: 100%;
+	background: #ebebeb;
+}
+
+.bw_configView_main_twoColumn .bw_configView_mainContent {
+	display: table-cell;
+	vertical-align: top;
+	padding: 20px 15px 25px 20px;
+}
+
+.bw_configView_leftPanel {
+	min-height: 100px;
+	position: relative;
+}
+
+.bw_configView_leftPanel_false {
+	width: 200px;
+}
+
+.bw_configView_leftPanel_true {
+	width: 23px;
+	overflow: hidden;
+}
+
+.bw_configView_leftPanel_true .bw_configView_leftPanel_filterBox,
+.bw_configView_leftPanel_true .bw_configView_leftPanel_filterResultList,
+.bw_configView_leftPanel_true .bw_configView_leftPanel_filterResultList2 {
+	visibility: hidden;
+}
+
+.bw_configView_leftPanel_toggleArrow {
+	position: absolute;
+	top: 14px;
+	right: -5px;
+	z-index: 10;
+	width: 23px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.bw_configView_leftPanel_toggleArrow .toggle_icon {
+	width: 9px;
+	height: 9px;
+	margin: 5px auto;
+}
+
+.bw_configView_leftPanel_toggleArrow .toggle_icon_toLeft {
+	background: url("/images/bw_icons_small_20x20.png") -20px -160px no-repeat;
+}
+
+.bw_configView_leftPanel_toggleArrow .toggle_icon_toRight {
+	background: url("/images/bw_icons_small_20x20.png") -40px -160px no-repeat;
+}
+
+.bw_configView_leftPanel_toggleArrow .panel_arrow_false {
+	display: block;
+}
+
+.bw_configView_leftPanel_toggleArrow .panel_arrow_true {
+	display: block;
+}
+
+.bw_configView_leftPanel_whiteGap {
+	height: 8px;
+	width: 100%;
+	background: #FFFFFF;
+}
+
+.bw_configView_leftPanel_filterBox {
+	margin-top: 10px;
+}
+
+.bw_configView_leftPanel_filterBox form {
+	margin-left: 10px;
+}
+
+.bw_configView_leftPanel_filterBox form input[type="text"] {
+	background-color: #FFF;
+}
+
+.bw_configView_leftPanel_filterResultList {
+	margin-top: 15px;
+}
+
+.bw_configView_leftPanel_filterResultList li {
+	height: 32px;
+	line-height: 32px;
+	padding-left: 18px;
+	padding-right: 23px;
+	text-align: left;
+}
+
+.bw_configView_leftPanel_filterResultList li a {
+	display: block;
+	font-size: 12px;
+	color: #3d3d3d;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bw_configView_leftPanel_filterResultList li a:hover {
+	text-decoration: none;
+}
+
+.bw_configView_leftPanel_filterResultList li:hover,
+.bw_configView_leftPanel_filterResultList li.active {
+	font-weight: bold;
+	background-color: #d1d1d1;
+}
+
+.bw_configView_treeStruc,
+.bw_configView_mainContent {
+	/*min-height: 325px;*/
+}
+
+.bw_configView_leftPanel {
+	min-height: 398px;
+}
+
+.bw_configView_leftPanel_filterResultList2{
+	margin-top: 15px;
+}
+.bw_configView_leftPanel_filterResultList2 li {
+	/*height: 32px;*/
+	/*line-height: 32px;*/
+
+	/*padding-left: 18px;*/
+	/*padding-right: 23px;*/
+	text-align: left;
+}
+.bw_configView_leftPanel_filterResultList2 li div
+{
+	padding-left: 23px;
+	padding-right: 18px;
+	height: 32px;
+	line-height: 32px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.bw_configView_leftPanel_filterResultList2 li a {
+	/*display: block;*/
+	font-size: 12px;
+	color: #3d3d3d;
+
+	overflow: hidden;
+	/*text-overflow: ellipsis;*/
+	/*white-space: nowrap;*/
+}
+.bw_configView_leftPanel_filterResultList2 li > div.second{
+	padding-left:38px;
+}
+
+.bw_configView_leftPanel_filterResultList2 li div:hover,
+.bw_configView_leftPanel_filterResultList2 li div.active{
+	font-weight: bold;
+	background-color: #d1d1d1;
+}
+
+.bw_configView_leftPanel_filterResultList2 li div a:hover {
+	text-decoration: none;
+}
+
+
+/* new slide tabs */
+.bw_configView_slideTabs {
+	font-family: "Open Sans";
+	font-weight: 600;
+}
+.table_lv2.software .bw_configView_slideTabs {
+	margin-left: 15px;
+}
+.bw_configView_slideTabs > li{
+	float: left;
+	margin-right: 10px;
+}
+.bw_configView_slideTabs > li > a {
+	display: inline-block;
+	font-size: 12px;
+	height: 31px;
+	line-height: 35px;
+	color: #a5a5a5;
+	text-align: center;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.bw_configView_slideTabs > li > a:hover{
+	color: #267fad;
+}
+.bw_configView_slideTabs > li.active > a {
+	color: #267fad;
+}
+
+
+/*config empty data and loading animation*/
+.bw_configView_main .empty_data {
+	margin-top: 75px;
+}
+
+.bw_configView_main_twoColumn .bw_configView_mainContent {
+	position: relative;
+}
+
+.bw_configView_main_twoColumn .bw_configView_mainContent .empty_data {
+	position: absolute;
+	width: 100%;
+	margin-top: 150px;
+}
+
+.bw_configView_main_twoColumn .bw_configView_mainContent .mask-loading {
+	top: 0px;
+	width: 98%;
+	height: 100%;
+}
+
+.bw_configview_tree_switch_list {
+	/*position: relative;
+	top: 9px;
+	right: 2px;*/
+	margin-top: 5px;
+}
+
+.bw_configview_tree_switch_list > li {
+	float: left;
+	color: grey;
+	margin-right: 3px;
+}
+
+.bw_configview_tree_switch_list > li.pipe {
+	margin-top: -2px;
+}
+
+.bw_configview_tree_switch_list > li > a {
+	cursor: pointer;
+}
+
+i.bw_configview_tree {
+	width: 17px;
+	height: 12px;
+	background: url("/images/bw_icons_small_20x20.png") -240px -100px no-repeat;
+}
+
+i.bw_configview_tree.active {
+	background-position: -280px -100px;
+}
+
+i.bw_configview_tree:not(.active):hover {
+	background-position: -260px -100px;
+}
+
+i.bw_configview_list {
+	width: 18px;
+	height: 12px;
+	background: url("/images/bw_icons_small_20x20.png") -240px -120px no-repeat;
+}
+
+i.bw_configview_list.active {
+	background-position: -280px -120px
+}
+
+i.bw_configview_list:not(.active):hover {
+	background-position: -260px -120px;
+}
+
+.bw_configView .general .bw_configView_listStruc table .property_name {
+	width: 22.5%
+}
+
+.bw_configView .general .bw_configView_listStruc table .property_type {
+	width: 14%;
+}
+
+.bw_configView .general .bw_configView_listStruc table .property_value {
+	width: 33.5%;
+}
+
+.bw_configView .general .bw_configView_listStruc table .property_path {
+	width: 33%;
+}
+
+.bw_configView .bw_configView_tableContent {
+	margin-top: 1px;
+}
+
+.bw_configView .bw_configView_tableContent td .cell_content {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.bw_configView .bw_configView_tableContent tr:first-child {
+	border-bottom: 1px solid #CCC;
+	font-weight: normal;
+}
+
+.bw_configView .bw_configView_tableContent tr:first-child:hover {
+	background: #D2E2EA;
+}
+
+/*.bw_configView_main_top {
+  text-align: right;
+}*/
+.config_view_switcher {
+	float: right;
+	margin-top: 4px;
+	margin-right: 10px;
+}
+
+.bw_configView_filter {
+	float: right;
+}
+
+.bw_configView_leavs_lvl1{
+//  background: linear-gradient(to right, #ffffff 0%, #ffffff 82%, #f9f9f9 91%, #eaeaea 97%, #dbdbdb 100%);
+}
+
+.bw_configView_leavs_lvl1.active a{
+  color:#1781ba;
+}

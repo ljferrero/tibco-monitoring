@@ -1,0 +1,9 @@
+<div class="date-widget date-area">
+    <div class="date-display date-area" ng-click="toggleDate()">
+        <div class="date-div date-area"><em>{{model | date:'MM/dd/yyyy'}}</em></div>
+        <div class="date-switcher date-area"></div>
+    </div>
+    <div class="date-panel date-area" ng-show="shouldShow()">
+        <div uib-datepicker ng-model="model" class="well well-sm date-area"></div>
+    </div>
+</div>

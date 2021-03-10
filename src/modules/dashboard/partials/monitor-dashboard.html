@@ -1,0 +1,23 @@
+<!-- <div class="row" style="font-size: 20px;">
+    <br>
+    <div class="col-md-3">
+        <a ui-sref="appnodes({viewType: $ctrl.globalVariables.viewType})">Containers</a>
+		<canvas id="myChart"></canvas>
+    </div>
+    <div class="col-md-3">
+        <a ui-sref="applications({viewType: $ctrl.globalVariables.viewType})">Applications</a>
+		<donut-chart running-count="$ctrl.runningCount"  stopped-count="$ctrl.stoppedCount" ></donut-chart>
+    </div>
+</div> -->
+<div ng-if="$ctrl.globalVariables.LoadUAA">
+
+    <div class="loading_animation">
+        <div class="gear_lg"></div>
+        <div class="gear_sm"></div>
+        <div class="loading_title">
+            <h2 class="redirect_text">Redirecting to PCF login page...</h2>
+        </div>
+    </div>
+
+
+</div>

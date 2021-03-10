@@ -1,0 +1,68 @@
+<div class="refresh row pull-right">
+    <div class="col-lg-12">
+        <ul class="app_header_refresh">
+            <li>
+                <div class="header_refresh_title" ng-class="{disabled: loading}">
+                    Last updated {{lastUpdateTime | date: 'HH:mm:ss'}}
+                </div>
+            </li>
+            <li title="Refresh Stats">
+                <div class="header_refresh_btn" ng-click="refreshGridData()"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-lg-12">
+    <div class="tibco-grid tibco-grid-hidden">
+        <div class="app_subTab_process_graph_processInfo" ng-switch="activityInstInfoOfGraphView.column">
+            <div ng-switch-when="three">
+                <div class="app_subTab_process_graph_processInfo_first_column">
+                    <div>
+                        <span class="app_subTab_process_graph_processInfo_group_title-{{activityInstInfoOfGraphView.info_first_column.groupType}}">
+                            {{activityInstInfoOfGraphView.info_first_column.groupTitle}}
+                        </span>
+                        <div class="group" ng-repeat="processInstColumn in activityInstInfoOfGraphView.info_first_column.group">
+                            <div class="title">
+                                {{processInstColumn.header}}:
+                            </div>
+                            <div class="value">
+                                <div title="{{activityInstInfoData[processInstColumn.header]}}">{{activityInstInfoData[processInstColumn.property] || '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app_subTab_process_graph_processInfo_second_column">
+                    <div>
+                        <span class="app_subTab_process_graph_processInfo_group_title-{{activityInstInfoOfGraphView.info_first_column.groupType}}">
+                            {{activityInstInfoOfGraphView.info_second_column.groupTitle}}
+                        </span>
+                        <div class="group" ng-repeat="processInstColumn in activityInstInfoOfGraphView.info_second_column.group">
+                            <div class="title">
+                                {{processInstColumn.header}}:
+                            </div>
+                            <div class="value">
+                                <div title="{{activityInstInfoData[processInstColumn.header]}}">{{activityInstInfoData[processInstColumn.property] || '-'}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app_subTab_process_graph_processInfo_third_column">
+                    <div>
+                        <span class="app_subTab_process_graph_processInfo_group_title-{{activityInstInfoOfGraphView.info_first_column.groupType}}">
+                            {{activityInstInfoOfGraphView.info_third_column.groupTitle}}
+                        </span>
+                        <div class="group" ng-repeat="processInstColumn in activityInstInfoOfGraphView.info_third_column.group">
+                            <div class="title">
+                                {{processInstColumn.header}}:
+                            </div>
+                            <div class="value">
+                                <div title="{{activityInstInfoData[processInstColumn.header]}}">{{activityInstInfoData[processInstColumn.property] || '-'}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

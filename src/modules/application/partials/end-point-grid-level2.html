@@ -1,0 +1,14 @@
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin" ng-if="$ctrl.endPointDataMap.size">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero">
+            <div class="form-inline">
+                <b>{{$ctrl.monLabels.application.endpoint.type_dropDown}}</b>
+                <select class="form-control" ng-model="$ctrl.selectedEndPointType" ng-change="$ctrl.showEndPoints()" class="container_dropdown">
+                    <option ng-repeat="type in $ctrl.endPointsType track by $index">{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <grid grid-header="$ctrl.endPointGridHeader" grid-data-map="$ctrl.endPointDataMap"></grid>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin" ng-if="!$ctrl.endPointDataMap.size">
+        <div class="empty_data show">{{::$ctrl.monLabels.application.endpoint.no_endpoint_text}}</div>
+    </div>

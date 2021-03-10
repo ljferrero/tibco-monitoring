@@ -1,0 +1,55 @@
+version: '2.0'
+
+services:
+  mysql_db:
+    image: mysql:latest
+    container_name: mon-mysql
+    network_mode: bridge
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: bwcemon
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./dbscripts/mysql:/docker-entrypoint-initdb.d
+  postgres_db:
+    image: postgres:latest
+    container_name: mon-postgres
+    network_mode: bridge
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bwcemon
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgres
+      - ./dbscripts/postgres:/docker-entrypoint-initdb.d
+  #mongodb:
+    #image: mongo
+    #ports:
+      #- "27107:27017"
+    #volumes:
+      #- mongo:/data/db
+    #network_mode: bridge
+  mon_app:
+    build: .
+    ports:
+      - "8080:8080"
+      - "443":"443"
+    links:
+      - mysql_db
+      #- postgres_db
+    environment:
+      #DB_URL: mongodb://mongodb:27017/bwcemon
+      #PERSISTENCE_TYPE: mongo
+      DB_URL: mysql://admin:admin@mon-mysql:3306/bwcemon
+      PERSISTENCE_TYPE: mysql
+      HTTPS: false
+      #DB_URL: postgresql://admin:admin@mon-postgres:5432/bwcemon
+      #PERSISTENCE_TYPE: postgres
+    network_mode: bridge
+volumes:
+  #mongo:
+  mysql_data:
+  postgres_data:

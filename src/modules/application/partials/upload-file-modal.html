@@ -1,0 +1,81 @@
+<div class="bw-modal">
+  <div class="bw-modal-dialog bw-modal-dialog-fade">
+
+
+    <div class="bw-modal-header">
+      <h3 class="bw-modal-title" id="modal-title">Upload Logback File</h3>
+    </div>
+    <div class="bw-modal-close" ng-click="$ctrl.cancel()">
+      <div class="bw-display-icon glyphicon glyphicon-remove">
+      </div>
+    </div>
+    <div class="bw-modal-wrapper bw-modal-wrapper-page-0">
+
+      <div class="bw-modal-page bw-modal-upload">
+        <form class="bw-modal-form" enctype="multipart/form-data" method="post" novalidate name="form">
+
+
+          <div class='bw-modal-content'>
+            <div class="modal-type custom_template">
+              <!--<div class="bw-modal-form-row">
+                  <p>{{'label_archives_upload_guide' | i18n}}</p>
+                </div>-->
+
+              <!--<div class="bw-modal-form-row warning-row">
+                  <p ng-show="holder.path.error">Path is illegal</p>
+                </div>-->
+              <p class="bw_modal_form_validate_tips" ng-show="$ctrl.step == 1 && $ctrl.logbackFileFlag">Logback file could not be uploaded.</p>
+              <div id="sharma" class="bw-modal-form-row display-file-row">
+                <p class="row-title">Logback file</label>
+                </p>
+                <div ng-show="$ctrl.step == 1" class="bw-upload-drag-area" ng-class="{'drag-over': $ctrl.holder.dragOver}">
+                  <div>
+                    <p>Drag and drop a Logback file anywhere on this page</p>
+                    <p>or</p>
+                    <p>
+                      <!--<a ng-click="chooseFile()">Select a file</a>-->
+                      <label for="appnodes_upload_input">Select a file</label>
+                    </p>
+                  </div>
+                </div>
+                <div ng-show="$ctrl.step > 1">
+                  <div ng-repeat="item in $ctrl.uploadItems" class="row-file-name">
+                    <p>
+                      <span class="file-name" ng- class="{nameSuccess: item.success}" title="{{item.name}}">{{item.name}}</span>
+                      <span> ({{item.size}})</span>
+                      <span class="handle-icon handle-remove" ng-click="$ctrl.removeFile($index)" ng-show="$ctrl.step == 2"></span>
+                      <i class="handle-icon handle-spin" ng-show="($ctrl.step == 3 && !item.success) || item.deleting"></i>
+                      <i class="handle-icon handle-checked" ng-show="item.success"></i>
+                    </p>
+                    <p class="upload-status status-success" ng-show="item.success">
+                      Upload Successful
+                    </p>
+                    <p class="upload-status status-error" ng-show="item.error">
+                      Failed to Upload
+                    </p>
+                    <p class="upload-status status-error" ng-show="item.error">
+                      Error
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="bw-modal-form-row operate-button-row clearfix">
+                <input id="appnodes_upload_input" type="file" file-directive name="file" class="appnodes_upload_input" />
+                <!--<div class="bw-modal-btn bw-modal-btn-right" ng-show="step == 1" ng-click="chooseFile()">Choose a file</div>-->
+                <div class="bw-modal-btn bw-modal-btn-right" ng-show="$ctrl.step == 1" ng-click="$ctrl.chooseEarFile()">Upload</div>
+                <div class="bw-modal-btn bw-modal-btn-right" ng-show="$ctrl.step == 2" ng-click="$ctrl.uploadComplete(form)">Upload</div>
+                <div class="bw-modal-btn btn-disabled bw-modal-btn-right" ng-show="ctrl.step == 3" disabled>Uploading</div>
+                <div class="bw-modal-btn bw-modal-btn-right" ng-show="$ctrl.step == 4" ng-click="$ctrl.done()">Done</div>
+                <div class="bw-modal-btn bw-modal-btn-cancel" ng-click="$ctrl.cancel()" ng-class="{hiddenCancel: $ctrl.step == 4}">Cancel</div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

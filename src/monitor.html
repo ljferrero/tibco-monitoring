@@ -1,0 +1,53 @@
+
+
+<div ng-if="$ctrl.globalVariables.env==='pcf'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero" ng-class="{'disable_action': $ctrl.globalVariables.showSpinner}">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <mon-header></mon-header>
+        <div class="loading_animation" ng-show="$ctrl.globalVariables.showSpinner">
+            <div class="gear_lg"></div>
+            <div class="gear_sm"></div>
+            <div class="loading_title" ng-show="$ctrl.globalVariables.isGetOperation">{{::$ctrl.monLabels.spinner.loading}}</div>
+            <div class="loading_title" ng-hide="$ctrl.globalVariables.isGetOperation">{{::$ctrl.monLabels.spinner.submitting}}</div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero test1">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padding-zero left-navbar" ng-hide="$ctrl.globalVariables.toggleHide">
+            <left-nav></left-nav>
+            <button ng-hide="$ctrl.globalVariables.toggleHide" ng-class="{'left-nav_toggle_right':!$ctrl.globalVariables.toggleHide,'left-nav_toggle':$ctrl.globalVariables.toggleHide}"
+                ng-click="$ctrl.globalVariables.toggleHide = !$ctrl.globalVariables.toggleHide">
+                    <i ng-class="{'arrowLeft': !$ctrl.globalVariables.toggleHide, 'arrowRight': $ctrl.globalVariablestoggleHide}"> > </i>
+                </button>
+        </div>
+        <div id="tabcontent" ng-class="{'col-lg-11 col-md-11 col-sm-11 col-xs-11 padding-zero': !$ctrl.globalVariables.toggleHide,'col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero': $ctrl.globalVariables.toggleHide}">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+                <button ng-hide="!$ctrl.globalVariables.toggleHide" ng-class="{'left-nav_toggle_right':!$ctrl.globalVariables.toggleHide,'left-nav_toggle':$ctrl.globalVariables.toggleHide}"
+                    ng-click="$ctrl.globalVariables.toggleHide = !$ctrl.globalVariables.toggleHide">
+                            <i ng-class="{'arrowLeft': !$ctrl.globalVariables.toggleHide, 'arrowRight': $ctrl.globalVariables.toggleHide}"> > </i>
+                        </button>
+                <div ui-view="{{$ctrl.$state.params.viewType}}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div ng-if="$ctrl.globalVariables.env !=='pcf'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero" ng-class="{'disable_action': $ctrl.globalVariables.showSpinner}">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <mon-header></mon-header>
+        <div class="loading_animation" ng-show="$ctrl.globalVariables.showSpinner">
+            <div class="gear_lg"></div>
+            <div class="gear_sm"></div>
+            <div class="loading_title" ng-show="$ctrl.globalVariables.isGetOperation">{{::$ctrl.monLabels.spinner.loading}}</div>
+            <div class="loading_title" ng-hide="$ctrl.globalVariables.isGetOperation">{{::$ctrl.monLabels.spinner.submitting}}</div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <div id="tabcontent" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+                    
+                <div ui-view="{{$ctrl.$state.params.viewType}}"></div>
+            </div>
+        </div>
+    </div>
+</div>

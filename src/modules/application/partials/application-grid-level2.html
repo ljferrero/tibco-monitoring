@@ -1,0 +1,176 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 default_padding">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <div class="appnodes content_level1">
+                <div class="app_header1">
+                    <ul class="app_header_nav clearfix">
+                        <li class="app_header2_topName">
+                            <span>{{$ctrl.$state.params.applicationName}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <div class="switcher pull-right">
+                <switcher></switcher>
+            </div>
+            <div class="refresh pull-right">
+                <refresh></refresh>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin line-seprator app-level2-status-btn-margin">
+        <div class="cell_content">
+            <span class="status_label" ng-class="{'label-success': $ctrl.applicationStatus === 'Running',
+                'label-stopped': $ctrl.applicationStatus === 'Stopped',
+                'label-warning': $ctrl.applicationStatus === 'Degraded',
+                'label-important': ($ctrl.applicationStatus === 'App error' || $ctrl.applicationStatus === 'Start failed')}">
+                {{$ctrl.applicationStatus}}
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin app_level2_font_size">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padding-zero">
+            <table border='0' cellspacing="0" cellpadding="0" class="application_level2_header_tab">
+                <tr>
+                    <td class="app_level2_label_tabel1">
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.app_instances}}:</span>
+                    </td>
+                    <td>
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.total_app_instances}} ({{$ctrl.appInstances.total}})
+                            {{$ctrl.monLabels.application.application_level2_headers.running_app_instances}} ({{$ctrl.appInstances.running}})</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="app_level2_label_tabel1">
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.version}}:</span>
+                    </td>
+                    <td>
+                        <span>{{$ctrl.applicationVersion}}</span>
+                    </td>
+                </tr>
+                <tr ng-if="$ctrl.isSwagger">
+                    <td class="app_level2_label_tabel1">
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.rest_doc_url}}:</span>
+                    </td>
+                    <td>
+                        <span class="rest-doc-content">
+                            <a title="{{$ctrl.swaggerUrl}}" href="{{$ctrl.swaggerUrl}}" target="_blank">{{$ctrl.swaggerUrl}}</a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="app_level2_label_tabel1">
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.jobs}}:</span>
+                    </td>
+                    <td>
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.job_names[0]}} ({{$ctrl.applicationJobStats.created}})
+                            {{$ctrl.monLabels.application.application_level2_headers.job_names[1]}} ({{$ctrl.applicationJobStats.running}})
+                            {{$ctrl.monLabels.application.application_level2_headers.job_names[2]}} ({{$ctrl.applicationJobStats.faulted}})
+                            {{$ctrl.monLabels.application.application_level2_headers.job_names[3]}} ({{$ctrl.applicationJobStats.cancelled}})
+                            {{$ctrl.monLabels.application.application_level2_headers.job_names[4]}} ({{$ctrl.applicationJobStats.scheduled}})</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-zero">
+            <table border='0' cellspacing="0" cellpadding="0" class="application_level2_header_tab">
+                <tr>
+                    <td class="app_level2_label_tabel1">
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.logback_file}}:</span>
+                    </td>
+                    <td>
+                        <div class="logback-cell-content">
+                            <a ng-click="$ctrl.upladFile()"> {{$ctrl.monLabels.application.application_level2_headers.upload}} </a>&nbsp;/ &nbsp;
+                            <a ng-click="$ctrl.downloadFile()"> {{$ctrl.monLabels.application.application_level2_headers.download}}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
+        <!--div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero">
+            <table border='0' cellspacing="0" cellpadding="0" class="application_level2_header_tab">
+                <tr>
+                    <td class="app_level2_label_tabel2"><span>{{$ctrl.monLabels.application.application_level2_headers.deployment_state}}:</span></td>
+                    <td><span>Deployed</span></td>
+                </tr>
+                <tr>
+                    <td class="app_level2_label_tabel2"><span>{{$ctrl.monLabels.application.application_level2_headers.description}}:</span></td>
+                    <td><span></span></td>
+                </tr>
+            </table>
+        </div-->
+        <div class="col-lg-3  col-md-3  col-sm-3  col-xs-3  padding-zero">
+            <table border='0' cellspacing="0" cellpadding="0" class="application_level2_header_tab pull-right">
+                <tr>
+                    <td>
+                        <span class="app_level2_label_tabel1">{{$ctrl.monLabels.application.application_level2_headers.stats_collection}}:</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>{{$ctrl.monLabels.application.application_level2_headers.process_instrumentation}}</span>
+                    </td>
+                    <td>
+                        <span>
+                            <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.processStatsStatus === true && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('process','start')">ON</span>
+                            <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status': $ctrl.processStatsStatus === false && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('process','stop')">OFF</span>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Process Monitor:</span>
+                    </td>
+                    <td>
+                        <span>
+                            <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.monitorStatsStatus === true && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('processmoitor','start')">ON</span>
+                            <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status': $ctrl.monitorStatsStatus === false && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('processmoitor','stop')">OFF</span>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Open Tracing:</span>
+                    </td>
+                    <td>
+                        <span>
+                            <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.openTracingStatus === true && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('opentracing','start')">ON</span>
+                            <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status': $ctrl.openTracingStatus === false && !($ctrl.appInstances.running === 0)}"
+                                ng-click="$ctrl.updateApplicationStatsInit('opentracing','stop')">OFF</span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 default_padding content_level2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero level2_inner">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+            <ul class="nav nav-tabs bw_table_view_nav-tabs">
+                <li ui-sref-active="active" ng-repeat="tab in $ctrl.monLabels.application.Application_level2_tabs | orderBy: 'order'">
+                    <a ng-click="$ctrl.globalVariables.appLevel2CurrentTab = tab.id" ng-show="tab.id !=='processes'" ui-sref="applications.application.defaultDetails({'currentAppTab': tab.id})">{{tab.name}}</a>
+                    <a ng-click="$ctrl.globalVariables.appLevel2CurrentTab = tab.id; $ctrl.globalVariables.processTabViewType = 'processInfo'"
+                        ng-show="tab.id === 'processes'" ui-sref="applications.application.defaultDetails.{{$ctrl.globalVariables.processTabViewType}}({'currentAppTab': tab.id, 'containerName': 'defaultContainer', 'processName': 'defaultProcess'})">{{tab.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 level2_view">
+            <div ui-view="{{$ctrl.$state.params.currentAppTab}}"></div>
+        </div>
+    </div>
+</div>

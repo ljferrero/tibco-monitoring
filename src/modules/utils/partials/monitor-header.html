@@ -1,0 +1,35 @@
+<div class="moniter_Header">
+    <!--img class="header-logo" src="/images/logo_2_0.png"-->
+    <a ui-sref="applications({viewType: 'default'})" ui-sref-opts="{reload: true}" class="monitor-header-text-deco" ng-click="$ctrl.resetGV()">
+        <span class="header-text">
+            <img src="images/bw-container-edition-logo.png">
+        </span>
+        <span class="header-version">
+                v{{$ctrl.globalVariables.version}}
+        </span>
+    </a>
+    <!-- <span ng-if="$ctrl.globalVariables.env === 'pcf'">
+        <button style="float:right" ng-click="$ctrl.logout()">Log out</button>
+    </span> -->
+
+
+    <span ng-if="$ctrl.globalVariables.env === 'pcf'">
+
+        <div  ng-if = "$ctrl.globalVariables.LoadUAA" class="btn-group btn-group-style" uib-dropdown dropdown-append-to-body>
+            <Span id="btn-append-to-body" class="btn header-text btn-header-text" uib-dropdown-toggle>
+                {{$ctrl.user_name}}
+                <span class="caret"></span>
+            </span>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+
+                <li role="menuitem" class="dropdown-menuitem" ng-click="$ctrl.logout()">Log Out</li>
+            </ul>
+        </div>
+    </span>
+
+
+
+
+
+
+</div>

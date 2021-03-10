@@ -1,0 +1,13 @@
+<div class="left-navbar">
+    <div class="left-nav">
+        <div class="navLeft splitter-true clearfix navLeft_toggle_false" id="navLeft">
+            <ul class="navLeft_tablist testClass">
+                <label>Spaces</label>
+                <li class="navbar-list" ng-cloak ng-repeat="space in $ctrl.globalVariables.spaces track by $index" ng-class="{'selectedItem':space === $ctrl.globalVariables.space}"
+                    title="{{space}}"
+                    ng-click="$ctrl.globalVariables.space=space;$ctrl.space=space;$ctrl.spaceChanged(space)">
+                    {{space}}
+                </li>
+        </div>
+    </div>
+</div>

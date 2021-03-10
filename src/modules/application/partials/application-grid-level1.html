@@ -1,0 +1,28 @@
+<div ui-view="default">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 default_padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <div class="appnodes content_level1">
+                    <div class="app_header1">
+                        <ul class="app_header_nav clearfix">
+                            <li class="app_header_title">
+                                <span ng-cloak>{{$ctrl.monLabels.application.application_title}} ({{$ctrl.globalVariables.applicationsCount}}) </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <!--div class="switcher pull-right">
+                    <switcher></switcher>
+                </div-->
+                <div class="refresh pull-right">
+                    <refresh></refresh>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin">
+            <grid grid-header="$ctrl.applicationsGridHeader" route-state-object ="$ctrl.routeStateObject" grid-data-map="$ctrl.applicationsDataMap" filter-data-length="$ctrl.filterDataLength" grid-data-to-be-removed="$ctrl.dataToBeRemoved"></grid>
+        </div>
+    </div>
+</div>

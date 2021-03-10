@@ -1,0 +1,32 @@
+<ul class="pagination" ng-show="1 < pages.length">
+        <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+          <a href="" ng-click="setCurrent(1)">&laquo;</a>
+        </li>
+        <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }" class="ng-scope">
+          <a href="" ng-click="setCurrent(pagination.current - 1)" class="ng-binding">‹</a>
+        </li>
+        <li ng-if="!isShortPagination" ng-repeat="pageNumber in pages track by $index"
+            ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+          <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+        </li>
+        <li>
+          <input type="number"  id="pagination_input" class="goInput" ng-model="pagination.current" min="1" max="{{pagination.last}}">
+          <!--<div class="bw_verification_wrap" ng-show="inputPagination < 1 || inputPagination > pagination.last"
+               ng-mouseenter="showPaginationTheErrorMessage()"
+               ng-mouseleave="hidePaginationTheErrorMessage()">
+          </div>
+          <div class="bw-tooltips2"
+               ng-show="showPaginationError"
+               ng-class="{'show-message':showPaginationError}" >
+            <span class="error" translate="label_modal_tooltip_invalid_history_page_size" translate-values="{value: '1~{{pagination.last}}' }"></span>
+          </div>-->
+          <a href="" ng-click="setCurrent(pagination.current)" class="ng-binding">go</a>
+        </li>
+        <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }" class="ng-scope">
+          <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding">›</a>
+        </li>
+        <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+          <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
+        </li>
+      </ul>
+      

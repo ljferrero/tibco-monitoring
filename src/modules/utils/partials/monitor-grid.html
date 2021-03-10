@@ -1,0 +1,103 @@
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padding-zero pull-right">
+    <div class="cool_filter_wrapper pull-right" ng-class="{focused: $ctrl.filterFocus}">
+        <a class="add-on" href="javascript:void(0);">
+            <i class="search_icon"></i>
+        </a>
+        <input type="text" class="search_input" ng-change="$ctrl.setFilterDataLength()" ng-model="$ctrl.searchText" ng-focus="$ctrl.filterFocus = true"
+            ng-blur="$ctrl.filterFocus = false" placeholder="Filter" />
+        <i class="filter_reset" ng-click="$ctrl.resetFilter()" ng-if="$ctrl.searchText.length > 0"></i>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin">
+    <div class="grid_lv1">
+        <div>
+            <table ng-class="{'app_instance': $ctrl.$state.params.currentAppTab ==='appInstances'}">
+                <tbody>
+                    <tr>
+                        <td ng-class="column.id === 'checkBox'? 'check_box' : '' ; column.id === 'name'? 'colname' : '' " ng-repeat="column in $ctrl.gridHeaderFilteredData = ($ctrl.gridHeader | filter: {'isVisible': true })  track by $index"
+                            ng-click="$ctrl.columnOrderBy($index)">
+                            <div class="head_cell_content tibco-grid-unsortable" ng-if="column.id !== 'checkBox'">
+                                <span class="cell-value" ng-mouseover="$ctrl.mouseOverColumn($index)" ng-mouseleave="$ctrl.mouseLeaveColumn($index)">
+                                    <b>{{column.label}}</b>
+                                </span>
+                                <span ng-class="$ctrl.getSortClass($index)" ng-if="column.isDefaultSortable || column.hover" ng-cloak></span>
+                            </div>
+                            <div class="head_checkbox_wrapper" ng-if="column.id === 'checkBox'? $ctrl.hasCheckBoxColumn = true : false">
+                                <input class="input_checkbox" type="checkbox" ng-change="$ctrl.onGridHeaderCheckBoxClick()" ng-model="$ctrl.gridHeaderCheckBox"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="$ctrl.treeView === true && $ctrl.filterData.length != 0">
+                        <td colspan="2" class="hidden-table-hover">
+                            <div ng-click="$ctrl.hideTableBody  = !$ctrl.hideTableBody " class="config-accordian bw_configView_leaf_topLabel">
+                                <i ng-class="!$ctrl.hideTableBody ? 'bw_icons_s-arrow-down' : 'bw_icons_s-arrow-right'"></i>
+                                <span title="{{$ctrl.$state.params.applicationName.replace('.application','')}}">{{$ctrl.$state.params.applicationName.replace('.application','')}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="!$ctrl.hideTableBody" ng-repeat="data in $ctrl.filterData = (($ctrl.gridDataMap | orderMapFilter) | filter: $ctrl.search | orderBy :$ctrl.sortColumn) track by $index">
+                        <td ng-if="$ctrl.hasCheckBoxColumn">
+                            <div class="cell_content cell_checkbox">
+                                <input class="input_checkbox" type="checkbox" ng-change="$ctrl.onGridRowCheckBoxClick()" ng-model="data.isChecked" />
+                            </div>
+                        </td>
+                        <td ng-switch="$ctrl.columnOrder[key]" ng-repeat="(key,value) in data | orderFilter: $ctrl.columnOrder track by $index">
+                            <div ng-switch-when='name' class="cell_content tibco-grid-unsortable">
+                                <span ng-if="value==='default' || value==='Not Available'" ng-click="$ctrl.getAppNodeId(data)" class="cell-value">
+                                    {{value}}
+                                </span>
+                                <a ng-if="!(value=== 'default' || value==='Not Available')" ui-sref="{{$ctrl.routeStateObject.name}}" ng-click="$ctrl.getAppNodeId(data)"
+                                    class="cell-value">
+                                    {{data.application_name ? data.application_name: value}}
+                                </a>
+                            </div>
+                            <div ng-switch-when='state' class="cell_content">
+                                <span class="status_label" ng-class="{'label-success': value === 'Running',
+                                'label-stopped': value === 'Stopped',
+                                'label-warning': (value === 'Impaired' ||value === 'Degraded'),
+                                'label-important': (value === 'App error' || value === 'Start failed')}">
+                                    {{value}}
+                                </span>
+                            </div>
+                            <div ng-switch-when='uptime' class="cell_content">
+                                <span class="cell-value">{{value | timeFormatFilter}}</span>
+                            </div>
+                            <div ng-switch-when='appnodeName' class="cell_content">
+                                <!--a class="cell-value"
+                                ui-sref="{{$ctrl.routeStateObject.appNode}}">{{value}}</a-->
+                                <span class="cell-value">{{value}}</span>
+                            </div>
+                            <div ng-switch-when='url' class="cell_content">
+                                <a class="cell-value pointer" title="{{value}}" ng-click="$ctrl.openNewTab(value)">{{value}}</a>
+                            </div>
+                            <div ng-switch-when='instanceStatsCollection' class="cell_content instance-stats-collection">
+                                <span class="cell-value pointer" title="Process Instrumentation" ng-click="value.toggleStatus('process', data, $ctrl.gridDataMap)">
+                                    <button class="stats-button-status process-status-btn" ng-class="{'status-button-off': value.process==='OFF'}" type="button">{{value.process}}</button>
+                                </span>
+                                <span class="cell-value pointer" title="Process Monitor" ng-click="value.toggleStatus('processinstance', data, $ctrl.gridDataMap);value.toggleStatus('activityinstance', data, $ctrl.gridDataMap)">
+                                    <button class="stats-button-status" ng-class="{'status-button-off': value.processmonitor==='OFF'}" type="button">{{value.processmonitor}}</button>
+                                </span>
+                                <span class="cell-value pointer" ng-click="value.toggleStatus('opentracing', data, $ctrl.gridDataMap)">
+                                    <button class="stats-button-status activity-instance-status-btn" ng-class="{'status-button-off': value.opentracing ==='OFF'}"
+                                        title="Activity Instance" type="button">{{value.opentracing}}</button>
+                                </span>
+                            </div>
+                            <div ng-switch-when='logbackFile' class="cell_content logback-cell-content">
+                                <a class="cell-value" ng-click="value.upload.uploadFile(data.nodeId)">{{value.upload.title}}</a>&nbsp;/ &nbsp;
+                                <a class="cell-value" ng-click="value.download.downloadFile(data.nodeId)"> {{value.download.title}}</a>
+                            </div>
+                            <div ng-switch-default class="cell_content">
+                                <span class="cell-value" title="{{value}}">{{value}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="$ctrl.filterData.length === 0">
+                        <td colspan="{{$ctrl.gridHeaderFilteredData.length}}">
+                            <div class="cell_content no-records-row">{{::$ctrl.monLabels.grid.no_record}}</div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>

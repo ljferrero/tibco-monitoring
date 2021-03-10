@@ -1,0 +1,116 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 default_padding">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero app_header2_topName">
+        {{::$ctrl.$state.params.nodeName}}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <div class="switcher pull-right">
+                <switcher></switcher>
+            </div>
+            <div class="refresh pull-right">
+                <refresh></refresh>
+            </div> 
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero app_header2_bar">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <ul class="clearfix">
+                <li class="app_header2_bar_statusLabel pull-left">
+                <span class="status_label label-success"> Running</span>
+                </li>
+                <li class="app_header2_buttonList pull-left">
+                    <div class="bw_icon_crud_wrapper-delete"  ng-click="$ctrl.deleteAppNodes()"
+                                title="delete">
+                        <i class="bw_icon_crud-delete">
+                        </i>
+                        <span ng-click="$ctrl.deleteNode('md')">Remove
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero app_header2_panel">
+        <div class="col-lg-4 col-md-14 col-sm-4 col-xs-4 padding-zero">
+            <div class="app_header2_panel_detail_first_column">
+                <div ng-repeat = "property in $ctrl.propertyPanel.detailGroup.info_first_column"
+                ng-switch="property.detailStyle">
+                    <span class="app_header2_panel_detail_title-appnodes title_1of2">
+                                {{property.detail}}:
+                    </span>
+                    <span ng-switch-when="upTime" class="app_header2_panel_detail_content app_header2_panel"> {{$ctrl.propertyPanel.data[property.detail]| timeFormatFilter}}
+                    </span>	
+                    <span ng-switch-when="status" class="app_header2_panel_detail_content app_header2_panel" > {{$ctrl.propertyPanel.data[property.detail]}}
+                    </span>	
+                    <span ng-switch-when="Machine" class="app_header2_panel_detail_content app_header2_panel"> {{$ctrl.propertyPanel.data[property.detail]}}
+                    </span>	
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-14 col-sm-4 col-xs-4 padding-zero">
+            <div class="app_header2_panel_detail_three_column">
+            <span class="app_header2_panel_detail_title-appnodes title_1of2">
+                Description
+            </span>
+            <span class="app_header2_panel_detail_content app_header2_panel">
+                Description
+            </span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-14 col-sm-4 col-xs-4 padding-zero ">
+            <div class="app_header2_panel_detail_three_column">
+                <div class="app_header2_panel_detail_title-appnodes">Stats Collection
+                </div>
+                <div ng-repeat="property in $ctrl.propertyPanel.info_third_column" ng-switch="property.detailStyle">
+                    <span class="app_header2_panel_detail_title-appnodes title_1of2">
+                    {{property.detail}}:
+                    </span>
+
+                    <span>
+                        <span class="stats_btu_able disable_on stats_btn_status">ON</span>
+                        <span class="stats_btu_disable disable_off">OFF</span>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin-level2">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#appinstances">App Instances</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active marginB20" id="appinstances">
+                <grid grid-header="$ctrl.appNodesGridHeader" grid-data-map="$ctrl.appNodesApplicationsDataMap" filter-data-length="$ctrl.filterDataLength" grid-data-to-be-removed="$ctrl.dataToBeRemoved"></grid>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="$ctrl.$state.params.viewType==='default'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin-level2">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#appinstances">App Instances</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active marginB20" id="appinstances">
+                <grid grid-header="$ctrl.appNodesGridHeader" grid-data-map="$ctrl.appNodesApplicationsDataMap" route-state-object ="$ctrl.routeStateObject"></grid>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="$ctrl.$state.params.viewType==='graph'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin-level2">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#appinstances">App Instances</a></li>
+        </ul>
+        <div class="tab-content marginT20">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-zero marginT100">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padding-zero">
+            <grid grid-header="$ctrl.appNodesGraphGridHeader"  route-state-object ="$ctrl.routeStateObject"  grid-data-map="$ctrl.appNodesApplicationDetailsDataMap"></grid>
+        </div>
+        </div>
+    </div>
+</div>

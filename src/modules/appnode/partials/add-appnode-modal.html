@@ -1,0 +1,35 @@
+<form name="form" class="bw-modal-form" ng-submit="!form.$invalid && $ctrl.ok(form)" novalidate>
+    <div class="bw-modal-header">
+        <h3 class="bw-modal-title" id="modal-title">Add Container</h3>
+    </div>
+    <div class="bw-modal-close" ng-click="$ctrl.cancel()">
+        <div class="glyphicon glysphicon-remove">
+        </div>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-repeat ="names in $ctrl.details">
+            <div class="bw_input_wraper">
+                <label class="label-element" for="names.name">{{names.name}}</label><br/>
+                <input class ="input-style" type="text" name="{{names.name}}" 
+                ng-model="$ctrl[names.name]"
+                placeholder="{{names.placeHolder}}"
+                ng-class="{'show-message1':form.{{names.name}}.$invalid && form.$submitted}"
+                ng-pattern="names.pattern" required/>
+                <div class="bw_verification_wrap"
+                 ng-mouseenter="$ctrl.showTheErrorMessage(form,names.name)" 
+                 ng-mouseleave="$ctrl.hideTheErrorMessage(form,names.name)"
+                 ng-show="form.{{names.name}}.$invalid && form.$submitted">
+                </div>
+                <div class="bw-tooltips2 "
+                       ng-show=" form.{{names.name}}.$invalid && form.$submitted"
+                       ng-class="{'show-message':form.{{names.name}}.showMessage}" >
+                    <span class="error">{{names.errorMessage}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        <button class="btn btn-primary" type="submit">OK</button>
+    </div>
+</form>

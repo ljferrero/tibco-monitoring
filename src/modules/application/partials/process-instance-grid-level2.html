@@ -1,0 +1,881 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero job-data-container">
+  <div class="row bw_lv2_process-Title bw_lv2_process_history-Title">
+    Process Instances
+  </div>
+  <div class="stats_page bw_le2_process_history-body">
+    <div class="main-view-section">
+      <div class="row date-filter-job-data date-filter-job-box">
+        <div class="col-lg-12">
+          <div class="set-days">
+            <div class="last-month" title="Last Month" ng-class="{'icon-selected': $ctrl.dateSearch.selectedDays === 'lastMonth'}"
+              ng-click="$ctrl.dateSearch.getDataForSelectedDays('lastMonth')"></div>
+            <div class="today" title="Today" ng-class="{'icon-selected': $ctrl.dateSearch.selectedDays === 'today'}"
+              ng-click="$ctrl.dateSearch.getDataForSelectedDays('today')">{{$ctrl.dateSearch.today.getDate()}}</div>
+          </div>
+          <div class="set-date-range">
+            <div>
+              <div class="date_wrapper">
+                <date-picker model="$ctrl.dateSearch.startDtOptions.dt" callback="$ctrl.dateSearch.startDtOptions.dtChange"></date-picker>
+              </div>
+              <div class="time_wrapper">
+                <time-picker model="$ctrl.dateSearch.startDtOptions.time" callback="$ctrl.dateSearch.startDtOptions.timeChange"></time-picker>
+              </div>
+            </div>
+            <div>to</div>
+            <div>
+              <div class="date_wrapper">
+                <date-picker model="$ctrl.dateSearch.endDtOptions.dt" callback="$ctrl.dateSearch.endDtOptions.dtChange"></date-picker>
+              </div>
+              <div class="time_wrapper">
+                <time-picker model="$ctrl.dateSearch.endDtOptions.time" callback="$ctrl.dateSearch.endDtOptions.timeChange"></time-picker>
+              </div>
+            </div>
+            <div class="search-date">
+              <div class="btn btn-primary stats_page" ng-click="$ctrl.dateSearch.search()">Search</div>
+              <div class="btn btn-danger stats_page" ng-click="$ctrl.dateSearch.clear()">Clear</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row date-filter-job-data">
+
+      <div class="col-lg-12 generel-view">
+        <div class="status-section">
+          <div class="application-job-icon">
+            <div title="COMPLETED" ng-class="{'icon-selected': $ctrl.status === 'COMPLETED'}" ng-click="$ctrl.sortOnJobStatus('COMPLETED')"
+              class="completed-icon show-count-icon">
+            </div>
+            <div class="job-count completed-count">{{$ctrl.jobsDataCount.completed}}</div>
+          </div>
+          <div class="application-job-icon margin-left">
+            <div title="CANCELLED" ng-class="{'icon-selected': $ctrl.status === 'CANCELLED'}" ng-click="$ctrl.sortOnJobStatus('CANCELLED')"
+              class="cancelled-icon show-count-icon">
+            </div>
+            <div class="job-count cancelled-count">{{$ctrl.jobsDataCount.cancelled}}</div>
+          </div>
+          <div class="application-job-icon margin-left">
+            <div title="FAULTED" ng-class="{'icon-selected': $ctrl.status === 'FAULTED'}" ng-click="$ctrl.sortOnJobStatus('FAULTED')"
+              class="faulted-icon show-count-icon">
+            </div>
+            <div class="job-count faulted-count">{{$ctrl.jobsDataCount.faulted}}</div>
+          </div>
+        </div>
+        <div class="input-group general-search-section input-prepend-inner">
+          <span class="input-group-addon" id="basic-addon1">
+            <i class="glyphicon glyphicon-search"></i>
+          </span>
+          <input type="text" class="form-control generic-search-box" placeholder="Search Input/Output Data (Hit enter/return to search)"
+            aria-describedby="basic-addon1" ng-model="$ctrl.generalSearch.text" ng-keyup="$ctrl.generalSearch.keyup($event)">
+          <i ng-if="$ctrl.generalSearch.text!==''" class="global-filter-reset" ng-click="$ctrl.generalSearch.clearSearch()"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row job-diagram-view">
+      <div ng-hide="$ctrl.isDiagram" class="job-view" ng-class="{'col-lg-6': $ctrl.isAllProcessData === false}">
+        <!--div class="col-lg-12"-->
+        <div class="col-lg-12 sub-header-panel">
+          <span>
+            <!-- <div class="dropdown"> -->
+            <!-- <i data-toggle="collapse" data-target="#toggleColumnList" class="column-filter-icon" title="Select Columns"></i>
+
+                      <ul id="toggleColumnList" class="dropdown-menu collapse custom-dropdown-menu" ng-click="$ctrl.catchEvent($event)"> -->
+            <i ng-click="$ctrl.columnstoggle = !$ctrl.columnstoggle" class="column-filter-icon column-toggle" title="Select Columns"></i>
+            <ul class="dropdown-menu custom-dropdown-menu column-toggle" ng-click="$ctrl.catchEvent($event)" ng-hide="!$ctrl.columnstoggle">
+              <li class="custom-dropdown column-toggle" ng-repeat="column in $ctrl.columnObject">
+                <span class="stats_pagecolumn-toggle">
+                  <input class="column-toggle" ng-click="$ctrl.columnSelect()" ng-if="column.id==='processinstanceid'"
+                    disabled type="checkbox" id="column.id" ng-model="column.isShow" ng-checked="column.isShow" />
+                  <input class="column-toggle" ng-click="$ctrl.columnSelect()" ng-if="column.id!=='processinstanceid'"
+                    type="checkbox" id="column.id" ng-model="column.isShow" ng-checked="column.isShow" />
+                  <label class="column-toggle" for="column.id"></label>{{column.columnName}}
+                </span>
+              </li>
+            </ul>
+            <!-- </div> -->
+            Show
+            <select class="stats_page-width50 stats_page" ng-model="$ctrl.pageSize" ng-init="$ctrl.pageSize=30"
+              ng-options="item for item in [10, 20, 30, 50]" ng-change="$ctrl.pageSizeChange()">
+            </select>
+            entries
+          </span>
+          <!-- <span class="cool_filter_wrapper">
+                  <a class="add-on" href="javascript:void(0);">
+                      <i class="search_icon"></i>
+                  </a>
+                  <input type="text" class="search_input"
+                         ng-model="searchText"
+                         placeholder="Filter"/>
+                  <i class="filter_reset" ng-click="$ctrl.searchText=''"
+                     ng-if="$ctrl.searchText.length > 0">
+                  </i>
+                </span> -->
+          <span class="pull-right">Filter :
+            <input type="text" ng-model="$ctrl.searchText" class="filter-height28">
+          </span>
+        </div>
+        <div class="col-lg-12 main-view-table-col">
+          <div class="main-view-table">
+            <div class="">
+              <table>
+                <tbody>
+                  <tr class="font-weight600">
+                    <td>
+                      <table class="">
+                        <tbody>
+                          <tr class="font-weight600">
+                            <td ng-switch="column.isUnSortable" ng-click="$ctrl.sortColumnData(column)" ng-if="column.isShow"
+                              ng-repeat="column in $ctrl.columnObject"
+                              ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                              <span class="head_cell_content_level2 tibco-grid-sortable" ng-switch-when="true">
+                                <span class="cell-value_level2 stats_page cell-value_level2-box">{{column.columnName}}</span>
+                                <span class="bw_icons_s-sort-none {{getSortClass(column.isUnSortable)}}" ng-cloak></span>
+                              </span>
+                              <span class="head_cell_content_level12 tibco-grid-sortable" ng-switch-when="false">
+                                <span class="cell-value_level2 stats_page cell-value_level2-box">{{column.columnName}}</span>
+                                <span class="bw_icons_s-sort-{{column.sortVal}}" ng-cloak></span>
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr dir-paginate="item in $ctrl.processInstanceList |filter: {processinstancestate: selectedJobStatus}: false | filter: $ctrl.search($ctrl.searchText) | itemsPerPage: $ctrl.pageSize"
+                    current-page="$ctrl.currentPage" pagination-id="mealsPagination" total-Items="$ctrl.totalProcessInst"
+                    ng-class="{'row-selected' : item.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': !item.isComponentCollapsed}"
+                    ng-click="$ctrl.selectRow($event, item);" class="cursor-poi">
+                    <!-- <tr dir-paginate="item in $ctrl.processInstanceData |filter: {processinstancestate: selectedJobStatus}: false | filter: $ctrl.search($ctrl.searchText) | itemsPerPage: pageSize"
+                          current-page="currentPage" pagination-id="mealsPagination" total-Items="totalProcessInst" ng-class="{'row-selected' : item.processInstanceId === selectedProcessInstanceId, 'border-none': item.isComponentCollapsed}"
+                          ng-click="selectRow($event, item);getActivityInstanceOfAnProcess($event, item.processInstanceId,item.processName,item.processInstanceUID);"
+                          style="cursor: pointer;"> -->
+                    <td>
+                      <table class="hybrid_table">
+                        <tbody>
+                          <!-- <tr><td>343421 {{$ctrl.columnObject}}{{item}}</td></tr> -->
+                          <tr class="row_hover">
+                            <td ng-if="column.isShow" ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                              <!-- <div>{{column.id}}</div> -->
+                              <div class="column-instance-id" ng-if="column.id==='processinstanceid'">
+                                <span class="status_bar">
+                                  <i ng-if="!item.isComponentCollapsed" ng-click="$ctrl.getSubProcesses(item);$ctrl.dataToggle($event, item);"
+                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                  </i>
+                                  <i ng-if="item.isComponentCollapsed" ng-click="$ctrl.dataToggle($event, item)"
+                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                  </i>
+                                </span>
+                                <span ng-class="{'cancelled-state-icon':item['processinstancestate']==='CANCELLED','faulted-state-icon':item['processinstancestate']==='FAULTED','completed-state-icon':item['processinstancestate']==='COMPLETED'}">
+                                </span>
+                                <span ng-if="column.id" title="{{item[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item[column.id].length > 18) ? item[column.id].substring(0,15)+'...' : item[column.id] : (item[column.id].length > 25) ? item[column.id].substring(0,22)+'...' : item[column.id]}}</span>
+                              </div>
+                              <div ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item[column.id]}}</div>
+                              <div ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                <!-- <bw-date-format data="item[column.id]"></bw-date-format> -->
+                                {{$ctrl.dateFormat(item[column.id])}}
+                              </div>
+                            </td>
+                          </tr>
+                          <!-- Start of subprocess code-->
+                          <tr ng-if="item.isComponentCollapsed" class="border-none">
+                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                              <table class="hybrid_table stats">
+                                <tbody class="hybrid_view">
+                                  <tr ng-if="item.subItem && item.subItem.length>0" ng-click="$ctrl.selectRow($event, item1);"
+                                    ng-repeat="item1 in item.subItem" class="hybrid_view_row row_hover" ng-class="{'row-selected' : item1.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item1.isComponentCollapsed}">
+                                    <td colspan="{{$ctrl.selectedColumnCount}}" class="padLeft0;">
+                                      <table class="hybrid_table stats">
+                                        <tbody class="hybrid_view">
+                                          <tr class="row_hover">
+                                            <td ng-if="column.isShow" ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                              <div ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                <span class="status_bar">
+                                                  <i ng-if="!item1.isComponentCollapsed" ng-click="$ctrl.getSubProcesses(item1);$ctrl.dataToggle($event, item1);"
+                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                  </i>
+                                                  <i ng-if="item1.isComponentCollapsed"
+                                                    ng-click="$ctrl.dataToggle($event, item1)" class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                  </i>
+                                                </span>
+                                                <span ng-class="{'cancelled-state-icon':item1['processinstancestate']==='CANCELLED','faulted-state-icon':item1['processinstancestate']==='FAULTED','completed-state-icon':item1['processinstancestate']==='COMPLETED'}">
+                                                </span>
+                                                <span  ng-if="column.id" title="{{item1[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item1[column.id].length > 18) ? item1[column.id].substring(0,15)+'...' : item1[column.id] : (item1[column.id].length > 25) ? item1[column.id].substring(0,22)+'...' : item1[column.id]}}</span>
+                                              </div>
+                                              <div ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item1[column.id]}}</div>
+                                              <div ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                {{$ctrl.dateFormat(item[column.id])}}
+                                              </div>
+                                            </td>
+                                          </tr>
+
+                                          <tr ng-if="item1.isComponentCollapsed" class="border-none">
+                                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                                              <table class="hybrid_table stats">
+                                                <tbody class="hybrid_view">
+                                                  <tr ng-if="item1.subItem && item1.subItem.length>0" ng-click="$ctrl.selectRow($event, item2);"
+                                                    ng-repeat="item2 in item1.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                    class="hybrid_view_row row_hover" ng-class="{'row-selected' : item2.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item2.isComponentCollapsed}">
+                                                    <td colspan="{{$ctrl.selectedColumnCount}}" class="padLeft0">
+                                                      <table class="hybrid_table stats">
+                                                        <tbody class="hybrid_view">
+                                                          <tr class="row_hover">
+                                                            <td ng-if="column.isShow" ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                              <div ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                <span class="status_bar">
+                                                                  <i ng-if="!item2.isComponentCollapsed" ng-click="$ctrl.getSubProcesses(item2);$ctrl.dataToggle($event, item2);"
+                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                  </i>
+                                                                  <i ng-if="item2.isComponentCollapsed"
+                                                                    ng-click="dataToggle($event, item2)" class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                  </i>
+                                                                </span>
+                                                                <span ng-class="{'cancelled-state-icon':item2['processinstancestate']==='CANCELLED','faulted-state-icon':item2['processinstancestate']==='FAULTED','completed-state-icon':item2['processinstancestate']==='COMPLETED'}">
+                                                                </span>
+                                                                <span  ng-if="column.id" title="{{item2[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item2[column.id].length > 18) ? item2[column.id].substring(0,15)+'...' : item2[column.id] : (item2[column.id].length > 25) ? item2[column.id].substring(0,22)+'...' : item2[column.id]}}</span>
+                                                              </div>
+                                                              <div ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item2[column.id]}}</div>
+                                                              <div ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                              </div>
+                                                            </td>
+                                                          </tr>
+
+                                                          <tr ng-if="item2.isComponentCollapsed" class="border-none">
+                                                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                                                              <table class="hybrid_table stats">
+                                                                <tbody class="hybrid_view">
+                                                                  <tr ng-if="item2.subItem && item2.subItem.length>0"
+                                                                    ng-click="$ctrl.selectRow($event, item3);"
+                                                                    ng-repeat="item3 in item2.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                    class="hybrid_view_row row_hover" ng-class="{'row-selected' : item3.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item3.isComponentCollapsed}">
+                                                                    <td colspan="{{$ctrl.selectedColumnCount}}" class="padLeft0">
+                                                                      <table class="hybrid_table stats">
+                                                                        <tbody class="hybrid_view">
+                                                                          <tr class="row_hover">
+                                                                            <td ng-if="column.isShow" ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                              <div ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                <span class="status_bar">
+                                                                                  <i ng-if="!item3.isComponentCollapsed"
+                                                                                    ng-click="$ctrl.getSubProcesses(item3);$ctrl.dataToggle($event, item3);"
+                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                  </i>
+                                                                                  <i ng-if="item3.isComponentCollapsed"
+                                                                                     ng-click="$ctrl.dataToggle($event, item3)"
+                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                  </i>
+                                                                                </span>
+                                                                                <span ng-class="{'cancelled-state-icon':item3['processinstancestate']==='CANCELLED','faulted-state-icon':item3['processinstancestate']==='FAULTED','completed-state-icon':item3['processinstancestate']==='COMPLETED'}">
+                                                                                </span>
+                                                                                <span  ng-if="column.id" title="{{item3[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item3[column.id].length > 18) ? item3[column.id].substring(0,15)+'...' : item3[column.id] : (item3[column.id].length > 25) ? item3[column.id].substring(0,22)+'...' : item3[column.id]}}</span>
+                                                                              </div>
+                                                                              <div ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item3[column.id]}}</div>
+                                                                              <div ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+
+
+                                                                          <tr ng-if="item3.isComponentCollapsed" class="border-none">
+                                                                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                                                                              <table class="hybrid_table stats">
+                                                                                <tbody class="hybrid_view">
+                                                                                  <tr ng-if="item3.subItem && item3.subItem.length>0"
+                                                                                    ng-click="$ctrl.selectRow($event, item4);"
+                                                                                    ng-repeat="item4 in item3.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                    class="hybrid_view_row row_hover"
+                                                                                    ng-class="{'row-selected' : item4.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item4.isComponentCollapsed}">
+                                                                                    <td colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                      class="padLeft0">
+                                                                                      <table class="hybrid_table stats">
+                                                                                        <tbody class="hybrid_view">
+                                                                                          <tr class="row_hover">
+                                                                                            <td ng-if="column.isShow"
+                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                              <div ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                <span class="status_bar">
+                                                                                                  <i ng-if="!item4.isComponentCollapsed"
+                                                                                                    ng-click="$ctrl.getSubProcesses(item4);$ctrl.dataToggle($event, item4);"
+                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                  </i>
+                                                                                                  <i ng-if="item4.isComponentCollapsed"
+                                                                                                    ng-click="$ctrl.dataToggle($event, item4)"
+                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                  </i>
+                                                                                                </span>
+                                                                                                <span ng-class="{'cancelled-state-icon':item4['processinstancestate']==='CANCELLED','faulted-state-icon':item4['processinstancestate']==='FAULTED','completed-state-icon':item4['processinstancestate']==='COMPLETED'}">
+                                                                                                </span>
+                                                                                                <span  ng-if="column.id" title="{{item4[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item4[column.id].length > 18) ? item4[column.id].substring(0,15)+'...' : item4[column.id] : (item4[column.id].length > 25) ? item4[column.id].substring(0,22)+'...' : item4[column.id]}}</span>
+                                                                                              </div>
+                                                                                              <div ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item4[column.id]}}</div>
+                                                                                              <div ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                              </div>
+                                                                                            </td>
+                                                                                          </tr>
+
+
+                                                                                          <tr ng-if="item4.isComponentCollapsed"
+                                                                                            class="border-none">
+                                                                                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                                                                                              <table class="hybrid_table stats">
+                                                                                                <tbody class="hybrid_view">
+                                                                                                  <tr ng-if="item4.subItem && item4.subItem.length>0"
+                                                                                                    ng-click="$ctrl.selectRow($event, item5);"
+                                                                                                    ng-repeat="item5 in item4.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                                    class="hybrid_view_row row_hover"
+                                                                                                    ng-class="{'row-selected' : item5.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item5.isComponentCollapsed}">
+                                                                                                    <td colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                                      class="padLeft0">
+                                                                                                      <table class="hybrid_table stats">
+                                                                                                        <tbody class="hybrid_view">
+                                                                                                          <tr class="row_hover">
+                                                                                                            <td ng-if="column.isShow"
+                                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                                              <div
+                                                                                                                ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                                <span
+                                                                                                                  class="status_bar">
+                                                                                                                  <i
+                                                                                                                    ng-if="!item5.isComponentCollapsed"
+                                                                                                                    ng-click="$ctrl.getSubProcesses(item5);$ctrl.dataToggle($event, item5);"
+                                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                                  </i>
+                                                                                                                  <i
+                                                                                                                    ng-if="item5.isComponentCollapsed"
+                                                                                                                    ng-click="$ctrl.dataToggle($event, item5)"
+                                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                                  </i>
+                                                                                                                </span>
+                                                                                                                <span
+                                                                                                                  ng-class="{'cancelled-state-icon':item5['processinstancestate']==='CANCELLED','faulted-state-icon':item5['processinstancestate']==='FAULTED','completed-state-icon':item5['processinstancestate']==='COMPLETED'}">
+                                                                                                                </span>
+                                                                                                                <span  ng-if="column.id" title="{{item5[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item5[column.id].length > 18) ? item5[column.id].substring(0,15)+'...' : item5[column.id] : (item5[column.id].length > 25) ? item5[column.id].substring(0,22)+'...' : item5[column.id]}}</span>
+                                                                                                              </div>
+                                                                                                              <div
+                                                                                                                ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item5[column.id]}}</div>
+                                                                                                              <div
+                                                                                                                ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                                              </div>
+                                                                                                            </td>
+                                                                                                          </tr>
+
+
+                                                                                                          <tr ng-if="item5.isComponentCollapsed"
+                                                                                                            class="border-none">
+                                                                                                            <td colspan="{{$ctrl.selectedColumnCount}}">
+                                                                                                              <table
+                                                                                                                class="hybrid_table stats">
+                                                                                                                <tbody
+                                                                                                                  class="hybrid_view">
+                                                                                                                  <tr
+                                                                                                                    ng-if="item5.subItem && item5.subItem.length>0"
+                                                                                                                    ng-click="$ctrl.selectRow($event, item6);"
+                                                                                                                    ng-repeat="item6 in item5.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                                                    class="hybrid_view_row row_hover"
+                                                                                                                    ng-class="{'row-selected' : item6.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item6.isComponentCollapsed}">
+                                                                                                                    <td
+                                                                                                                      colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                                                      class="padLeft0">
+                                                                                                                      <table
+                                                                                                                        class="hybrid_table stats">
+                                                                                                                        <tbody
+                                                                                                                          class="hybrid_view">
+                                                                                                                          <tr
+                                                                                                                            class="row_hover">
+                                                                                                                            <td
+                                                                                                                              ng-if="column.isShow"
+                                                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                                                              <div
+                                                                                                                                ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                                                <span
+                                                                                                                                  class="status_bar">
+                                                                                                                                  <i
+                                                                                                                                    ng-if="!item6.isComponentCollapsed"
+                                                                                                                                    ng-click="$ctrl.getSubProcesses(item6);$ctrl.dataToggle($event, item6);"
+                                                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                                                  </i>
+                                                                                                                                  <i
+                                                                                                                                    ng-if="item6.isComponentCollapsed"
+                                                                                                                                    ng-click="$ctrl.dataToggle($event, item6)"
+                                                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                                                  </i>
+                                                                                                                                </span>
+                                                                                                                                <span
+                                                                                                                                  ng-class="{'cancelled-state-icon':item6['processinstancestate']==='CANCELLED','faulted-state-icon':item6['processinstancestate']==='FAULTED','completed-state-icon':item6['processinstancestate']==='COMPLETED'}">
+                                                                                                                                </span>
+                                                                                                                                <span  ng-if="column.id" title="{{item6[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item6[column.id].length > 18) ? item6[column.id].substring(0,15)+'...' : item6[column.id] : (item6[column.id].length > 25) ? item6[column.id].substring(0,22)+'...' : item6[column.id]}}</span>
+                                                                                                                              </div>
+                                                                                                                              <div
+                                                                                                                                ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item6[column.id]}}</div>
+                                                                                                                              <div
+                                                                                                                                ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                                                              </div>
+                                                                                                                            </td>
+                                                                                                                          </tr>
+
+                                                                                                                          <tr
+                                                                                                                            ng-if="item6.isComponentCollapsed"
+                                                                                                                            class="border-none">
+                                                                                                                            <td
+                                                                                                                              colspan="{{$ctrl.selectedColumnCount}}">
+                                                                                                                              <table
+                                                                                                                                class="hybrid_table stats">
+                                                                                                                                <tbody
+                                                                                                                                  class="hybrid_view">
+                                                                                                                                  <tr
+                                                                                                                                    ng-if="item6.subItem && item6.subItem.length>0"
+                                                                                                                                    ng-click="$ctrl.selectRow($event, item7);;"
+                                                                                                                                    ng-repeat="item7 in item6.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                                                                    class="hybrid_view_row row_hover"
+                                                                                                                                    ng-class="{'row-selected' : item7.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item7.isComponentCollapsed}">
+                                                                                                                                    <td
+                                                                                                                                      colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                                                                      class="padLeft0">
+                                                                                                                                      <table
+                                                                                                                                        class="hybrid_table stats">
+                                                                                                                                        <tbody
+                                                                                                                                          class="hybrid_view">
+                                                                                                                                          <tr
+                                                                                                                                            class="row_hover">
+                                                                                                                                            <td
+                                                                                                                                              ng-if="column.isShow"
+                                                                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                                                                              <div
+                                                                                                                                                ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                                                                <span
+                                                                                                                                                  class="status_bar">
+                                                                                                                                                  <i
+                                                                                                                                                    ng-if="!item7.isComponentCollapsed"
+                                                                                                                                                    ng-click="$ctrl.getSubProcesses(item7);$ctrl.dataToggle($event, item7);"
+                                                                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                                                                  </i>
+                                                                                                                                                  <i
+                                                                                                                                                    ng-if="item7.isComponentCollapsed"
+                                                                                                                                                    ng-click="$ctrl.dataToggle($event, item7)"
+                                                                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                                                                  </i>
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                  ng-class="{'cancelled-state-icon':item7['processinstancestate']==='CANCELLED','faulted-state-icon':item7['processinstancestate']==='FAULTED','completed-state-icon':item7['processinstancestate']==='COMPLETED'}">
+                                                                                                                                                </span>
+                                                                                                                                                <span  ng-if="column.id" title="{{item7[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item7[column.id].length > 18) ? item7[column.id].substring(0,15)+'...' : item7[column.id] : (item7[column.id].length > 25) ? item7[column.id].substring(0,22)+'...' : item7[column.id]}}</span>
+                                                                                                                                              </div>
+                                                                                                                                              <div
+                                                                                                                                                ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item7[column.id]}}</div>
+                                                                                                                                              <div
+                                                                                                                                                ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                                                                              </div>
+                                                                                                                                            </td>
+                                                                                                                                          </tr>
+
+
+
+                                                                                                                                          <tr
+                                                                                                                                            ng-if="item7.isComponentCollapsed"
+                                                                                                                                            class="border-none">
+                                                                                                                                            <td
+                                                                                                                                              colspan="{{$ctrl.selectedColumnCount}}">
+                                                                                                                                              <table
+                                                                                                                                                class="hybrid_table stats">
+                                                                                                                                                <tbody
+                                                                                                                                                  class="hybrid_view">
+                                                                                                                                                  <tr
+                                                                                                                                                    ng-if="item7.subItem && item7.subItem.length>0"
+                                                                                                                                                    ng-click="$ctrl.selectRow($event, item8);"
+                                                                                                                                                    ng-repeat="item8 in item7.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                                                                                    class="hybrid_view_row row_hover"
+                                                                                                                                                    ng-class="{'row-selected' : item8.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item8.isComponentCollapsed}">
+                                                                                                                                                    <td
+                                                                                                                                                      colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                                                                                      class="padLeft0">
+                                                                                                                                                      <table
+                                                                                                                                                        class="hybrid_table stats">
+                                                                                                                                                        <tbody
+                                                                                                                                                          class="hybrid_view">
+                                                                                                                                                          <tr
+                                                                                                                                                            class="row_hover">
+                                                                                                                                                            <td
+                                                                                                                                                              ng-if="column.isShow"
+                                                                                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                                                                                              <div
+                                                                                                                                                                ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                                                                                <span
+                                                                                                                                                                  class="status_bar">
+                                                                                                                                                                  <i
+                                                                                                                                                                    ng-if="!item8.isComponentCollapsed"
+                                                                                                                                                                    ng-click="$ctrl.getSubProcesses(item8);$ctrl.dataToggle($event, item8);"
+                                                                                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                                                                                  </i>
+                                                                                                                                                                  <i
+                                                                                                                                                                    ng-if="item8.isComponentCollapsed"
+                                                                                                                                                                    ng-click="$ctrl.dataToggle($event, item8)"
+                                                                                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                                                                                  </i>
+                                                                                                                                                                </span>
+                                                                                                                                                                <span
+                                                                                                                                                                  ng-class="{'cancelled-state-icon':item8['processinstancestate']==='CANCELLED','faulted-state-icon':item8['processinstancestate']==='FAULTED','completed-state-icon':item8['processinstancestate']==='COMPLETED'}">
+                                                                                                                                                                </span>
+                                                                                                                                                                <span  ng-if="column.id" title="{{item8[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item8[column.id].length > 18) ? item8[column.id].substring(0,15)+'...' : item8[column.id] : (item8[column.id].length > 25) ? item8[column.id].substring(0,22)+'...' : item8[column.id]}}</span>
+                                                                                                                                                              </div>
+                                                                                                                                                              <div
+                                                                                                                                                                ng-if="column.id!=='processinstanceid' && column.id!=='processInstanceEndTime'&& column.id!=='processInstanceStartTime'">{{item8[column.id]}}</div>
+                                                                                                                                                              <div
+                                                                                                                                                                ng-if="column.id==='processInstanceEndTime' || column.id==='processInstanceStartTime'">
+                                                                                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                                                                                              </div>
+                                                                                                                                                            </td>
+                                                                                                                                                          </tr>
+
+                                                                                                                                                          <tr
+                                                                                                                                                            ng-if="item8.isComponentCollapsed"
+                                                                                                                                                            class="border-none">
+                                                                                                                                                            <td
+                                                                                                                                                              colspan="{{$ctrl.selectedColumnCount}}">
+                                                                                                                                                              <table
+                                                                                                                                                                class="hybrid_table stats">
+                                                                                                                                                                <tbody
+                                                                                                                                                                  class="hybrid_view">
+                                                                                                                                                                  <tr
+                                                                                                                                                                    ng-if="item8.subItem && item8.subItem.length>0"
+                                                                                                                                                                    ng-click="$ctrl.selectRow($event, item9);"
+                                                                                                                                                                    ng-repeat="item9 in item8.subItem |filter: {processinstancestate: $ctrl.selectedJobStatus}: false"
+                                                                                                                                                                    class="hybrid_view_row row_hover"
+                                                                                                                                                                    ng-class="{'row-selected' : item9.processinstanceid === $ctrl.selectedProcessInstanceId, 'border-none': item9.isComponentCollapsed}">
+                                                                                                                                                                    <td
+                                                                                                                                                                      colspan="{{$ctrl.selectedColumnCount}}"
+                                                                                                                                                                      class="padLeft0">
+                                                                                                                                                                      <table
+                                                                                                                                                                        class="hybrid_table stats">
+                                                                                                                                                                        <tbody
+                                                                                                                                                                          class="hybrid_view">
+                                                                                                                                                                          <tr
+                                                                                                                                                                            class="row_hover">
+                                                                                                                                                                            <td
+                                                                                                                                                                              ng-if="column.isShow"
+                                                                                                                                                                              ng-repeat="column in $ctrl.columnObject" ng-class="{'job-table-column-sm' : !$ctrl.isAllProcessData, 'job-table-column-lg' : $ctrl.isAllProcessData}">
+                                                                                                                                                                              <div
+                                                                                                                                                                                ng-if="column.id==='processinstanceid'" class="column-instance-id">
+                                                                                                                                                                                <span
+                                                                                                                                                                                  class="status_bar">
+                                                                                                                                                                                  <i
+                                                                                                                                                                                    ng-if="!item9.isComponentCollapsed"
+                                                                                                                                                                                    ng-click="$ctrl.getSubProcesses(item9);$ctrl.dataToggle($event, item9);"
+                                                                                                                                                                                    class="bw_icons_s-chevron-right bw_icons_s-chevron-show marginT9">
+                                                                                                                                                                                  </i>
+                                                                                                                                                                                  <i
+                                                                                                                                                                                    ng-if="item9.isComponentCollapsed"
+                                                                                                                                                                                    ng-click="$ctrl.dataToggle($event, item9)"
+                                                                                                                                                                                    class="marginT9 bw_icons_s-chevron-down-tab bw_icons_s-chevron-show">
+                                                                                                                                                                                  </i>
+                                                                                                                                                                                </span>
+                                                                                                                                                                                <span
+                                                                                                                                                                                  ng-class="{'cancelled-state-icon':item9['processinstancestate']==='CANCELLED','faulted-state-icon':item9['processinstancestate']==='FAULTED','completed-state-icon':item9['processinstancestate']==='COMPLETED'}">
+                                                                                                                                                                                </span>
+                                                                                                                                                                                <span  ng-if="column.id" title="{{item9[column.id]}}">{{($ctrl.isAllProcessData === false) ? (item9[column.id].length > 18) ? item9[column.id].substring(0,15)+'...' : item9[column.id] : (item9[column.id].length > 25) ? item9[column.id].substring(0,22)+'...' : item9[column.id]}}</span>
+                                                                                                                                                                              </div>
+                                                                                                                                                                              <div
+                                                                                                                                                                                ng-if="column.id!=='processinstanceid' && column.id!=='processinstanceendtime'&& column.id!=='processinstancestarttime'">{{item9[column.id]}}</div>
+                                                                                                                                                                              <div
+                                                                                                                                                                                ng-if="column.id==='processinstanceendtime' || column.id==='processinstancestarttime'">
+                                                                                                                                                                                {{$ctrl.dateFormat(item[column.id])}}
+                                                                                                                                                                              </div>
+                                                                                                                                                                            </td>
+                                                                                                                                                                          </tr>
+
+
+
+
+                                                                                                                                                                        </tbody>
+                                                                                                                                                                      </table>
+                                                                                                                                                                    </td>
+                                                                                                                                                                  </tr>
+                                                                                                                                                                </tbody>
+                                                                                                                                                              </table>
+                                                                                                                                                            </td>
+                                                                                                                                                          </tr>
+
+
+                                                                                                                                                        </tbody>
+                                                                                                                                                      </table>
+                                                                                                                                                    </td>
+                                                                                                                                                  </tr>
+                                                                                                                                                </tbody>
+                                                                                                                                              </table>
+                                                                                                                                            </td>
+                                                                                                                                          </tr>
+
+
+                                                                                                                                        </tbody>
+                                                                                                                                      </table>
+                                                                                                                                    </td>
+                                                                                                                                  </tr>
+                                                                                                                                </tbody>
+                                                                                                                              </table>
+                                                                                                                            </td>
+                                                                                                                          </tr>
+
+
+
+
+                                                                                                                        </tbody>
+                                                                                                                      </table>
+                                                                                                                    </td>
+                                                                                                                  </tr>
+                                                                                                                </tbody>
+                                                                                                              </table>
+                                                                                                            </td>
+                                                                                                          </tr>
+
+
+                                                                                                        </tbody>
+                                                                                                      </table>
+                                                                                                    </td>
+                                                                                                  </tr>
+                                                                                                </tbody>
+                                                                                              </table>
+                                                                                            </td>
+                                                                                          </tr>
+
+
+                                                                                        </tbody>
+                                                                                      </table>
+                                                                                    </td>
+                                                                                  </tr>
+                                                                                </tbody>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+
+
+                                                                        </tbody>
+                                                                      </table>
+                                                                    </td>
+                                                                  </tr>
+                                                                </tbody>
+                                                              </table>
+                                                            </td>
+                                                          </tr>
+
+
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+
+
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <!-- end of subprocess code-->
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </td>
+              </tr>
+              <tbody>
+                </table>
+                </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 main-view-pagination">
+          <dir-pagination-controls boundary-links="true" pagination-id="mealsPagination" on-page-change="pageChangeHandler(newPageNumber)"
+            pagination-type="short"></dir-pagination-controls>
+        </div>
+        <!--/div-->
+      </div>
+      <!-- <div ng-if="showDiagram" class={{diagramClass}} style="padding-right:0"> -->
+      <div ng-hide="$ctrl.isAllProcessData" class="{{$ctrl.diagramView}} padright0">
+        <div class="bw_lv2_processDiagram-leftPanel-drag ng-scope" ng-class="{'rightAlign':!$ctrl.toggleHide}">
+          <button ng-click="$ctrl.sliderClicked()" class="bw_lv2_process-toggleBtn">
+            <i ng-class="{'arrowLeft': !$ctrl.toggleHide, 'arrowRight':$ctrl.toggleHide}"> > </i>
+          </button>
+        </div>
+        <div class="col-lg-12 processDiagram-leftPanel-drag-select" prepare-data-for-process-diagram-of-graph>
+
+          <div class="col-lg-12 processDiagram-leftPanel-UpperTab">
+            <span ng-click="$ctrl.selectUpperTab('diagram');" ng-class="{'select-tab': $ctrl.selectedUpperTab==='diagram'}"
+              class="bw_lv2_processDiagram-leftPanel-drag-selectUpperTab">Process Diagram</span>
+            <span ng-if="$ctrl.selectedProcessInstanceId && $ctrl.selectedProcessInstanceId !==''" ng-click="$ctrl.selectUpperTab('activity');"
+              ng-class="{'select-tab': $ctrl.selectedUpperTab==='activity'}" class="bw_lv2_processDiagram-leftPanel-drag-selectUpperTab">Activity
+              Details</span>
+            <span ng-show="$ctrl.selectedUpperTab==='diagram'" class="diagram-header-zoom-in-out" bw-slider svg-data="$ctrl.svgData">
+            </span>
+          </div>
+          <div class="col-lg-12 processDiagram-leftPanel-box">
+            <div ng-show="$ctrl.selectedProcessInstanceId && $ctrl.selectedProcessInstanceId !=='' && $ctrl.selectedUpperTab === 'activity'"
+              class="overflow-auto">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+                <div class="panel-body activity-instance-table padding-zero">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td ng-repeat="column in $ctrl.activityInstanceHeader  track by $index">
+                          <div class="head_cell_content cell-elip">
+                            <span class="cell-value" title="{{column.header}}">
+                              <b>{{column.header}}</b>
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="cursor-poi" ng-class="{'row-selected': row.activityname ===$ctrl.selectedActivityName}"
+                        ng-click="$ctrl.selectActivityData($event, {selectedActivity: row.activityname})" ng-repeat="row in $ctrl.activityInstanceData  track by $index">
+                        <td ng-switch="key" ng-repeat="(key,value) in row">
+                          <div ng-switch-when='activitystate' class="cell_content">
+                            <span class="status_label" ng-class="{'label-success': value === 'COMPLETED',
+                                                          'label-primary': value === 'STARTED',
+                                                          'label-warning': (value === 'CANCELLED'),
+                                                          'label-danger': (value === 'FAULTED')}">
+                              {{value}}
+                            </span>
+                          </div>
+                          <div ng-switch-when='timestmp' class="cell_content">
+                            <span>
+                              <span class="cell-value" title="{{value | date:'yyyy/MM/dd HH:mm:ss'}}">{{value |
+                                date:'yyyy/MM/dd HH:mm:ss'}}</span>
+                            </span>
+                          </div>
+                          <div ng-switch-when='activitystarttime' class="cell_content">
+                            <span>
+                              <span class="cell-value" title="{{value | date:'yyyy/MM/dd HH:mm:ss'}}">{{value |
+                                date:'yyyy/MM/dd HH:mm:ss'}}</span>
+                            </span>
+                          </div>
+                          <div ng-switch-default class="cell_content">
+                            <span class="cell-value" title="{{value}}">{{value}}</span>
+                          </div>
+                        </td>
+
+                      </tr>
+                      <tr ng-if="$ctrl.activityInstanceData.length === 0">
+                        <td colspan="{{$ctrl.activityInstanceHeader.length}}">
+                          <div class="cell_content no-records-row">{{::$ctrl.monLabels.grid.no_record}}</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div ng-show="$ctrl.selectedUpperTab === 'diagram'">
+              <process-diagram id="svgDataDiagramTransition" ng-show="$ctrl.svgData" svg-data="$ctrl.svgData"
+                current-svg-data="$ctrl.svgData" activity-data="$ctrl.activityInstanceList.activity" transition-data="$ctrl.activityInstanceList.transition"></process-diagram>
+              <div class="empty-diagram" ng-show="!$ctrl.svgData && !urlSearch.opp">
+                <i class="bw_icons_s-empty-diagram"></i>
+                <span translate="label_process_no_diagram"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 bw_lv2_processDiagram-leftPanel-drag-selectLowerTab">
+            <span ng-click="$ctrl.selectLowerTab('details')" ng-class="{'select-tab': $ctrl.selectedLowerTab === 'details'}"
+              class="processDiagram-leftPanel-LowerTab-select">Details</span>
+            <span ng-if="$ctrl.isActivityClicked" ng-click="$ctrl.selectLowerTab('configuration')" ng-class="{'select-tab': $ctrl.selectedLowerTab === 'configuration'}"
+            class="processDiagram-leftPanel-LowerTab-select">Configuration</span>
+            <span ng-show="$ctrl.isShowInputOutputData && $ctrl.selectedProcessInstanceId !==''" ng-click="$ctrl.selectLowerTab('input')"
+              ng-class="{'select-tab': $ctrl.selectedLowerTab === 'input'}" class="processDiagram-leftPanel-LowerTab-select">Input
+              Data</span>
+            <span ng-show="$ctrl.isShowInputOutputData && $ctrl.selectedProcessInstanceId !==''" ng-click="$ctrl.selectLowerTab('output')"
+              ng-class="{'select-tab': $ctrl.selectedLowerTab === 'output'}" class="processDiagram-leftPanel-LowerTab-select">Output
+              Data</span>
+          </div>
+          <div class="col-lg-12 processDiagram-leftPanel-Lower-Tab">
+            <div ng-if="$ctrl.selectedLowerTab === 'details'" id="detailSection" class="processDiagram-leftPanel-LowerTab-detail-select">
+              <table class="details-table" ng-if="$ctrl.jobDetails">
+                <tr ng-repeat="activity in $ctrl.activityDetailsGridHeader" ng-switch="activity.dataStyle">
+                  <td>{{activity.header}}</td>
+                  <td ng-switch-when="moment">
+                    {{$ctrl.dateFormat($ctrl.jobDetails[activity.property.toLowerCase()])}}
+                  </td>
+                  <td ng-switch-when="state">
+                    <span ng-class="{'label-success':$ctrl.jobDetails[activity.property.toLowerCase()] == 'COMPLETED',
+                                  'label-danger':$ctrl.jobDetails[activity.property.toLowerCase()] == 'FAULTED',
+                                  'label-primary':$ctrl.jobDetails[activity.property.toLowerCase()] == 'STARTED',
+                                  'label-warning':$ctrl.jobDetails[activity.property.toLowerCase()] == 'CANCELLED',
+                                  'label-default':$ctrl.jobDetails[activity.property.toLowerCase()] != 'COMPLETED' && $ctrl.jobDetails[activity.property.toLowerCase()] != 'FAULTED' && $ctrl.jobDetails[activity.property.toLowerCase()] != 'STARTED' && $ctrl.jobDetails[activity.property.toLowerCase()] != 'CANCELLED'
+                                  }"
+                      class="label"> {{$ctrl.jobDetails[activity.property.toLowerCase()]}}</span>
+                  </td>
+                  <td ng-switch-when="default">{{$ctrl.jobDetails[activity.property.toLowerCase()]}}</td>
+                </tr>
+              </table>
+              <div ng-if="!$ctrl.jobDetails">Please Select Job</div>
+            </div>
+            <div ng-if="$ctrl.selectedLowerTab === 'configuration'" id="configSection" class="processDiagram-leftPanel-LowerTab-detail-select">
+              <table class="conf-table" ng-if="$ctrl.isActivityClicked">
+                <tr>
+                  <td>Activity Name </td>
+                  <td>{{$ctrl.selectedActivityConfData.name}}</td>
+                </tr>
+                <tr ng-repeat="(key, val) in $ctrl.selectedActivityConfData.BWActivity.activityConfig.properties.value"
+                  ng-switch="val">
+                  <td>{{key}}</td>
+                  <td ng-if="['true', 'false'].indexOf(val) > -1">
+                    <span ng-if="val == 'true'" class="glyphicon glyphicon-check"></span>
+                    <span ng-if="val == 'false'" class="glyphicon glyphicon-unchecked"></span>
+                  </td>
+                  <td ng-if="((['true', 'false'].indexOf(val) == -1) && (key === 'startTime' || key === 'endTime'))">
+                    {{$ctrl.dateFormat12(val)}}
+                  </td>
+                  <td ng-if="((['true', 'false'].indexOf(val) == -1) &&  (key !== 'endTime' && key !== 'startTime'))">
+                    {{val}}
+                  </td>
+                  <!-- <td ng-switch-when="val === 'true'">5555<span class="glyphicon glyphicon-check"></span></td>
+                         <td ng-switch-when="val === 'false'">5555<span class="glyphicon glyphicon-unchecked"></span></td>
+                         <td ng-switch-default>1111{{val}}</td> -->
+                </tr>
+              </table>
+            </div>
+            <!-- <div ng-if="!jobDetails">No Data Available</div> -->
+            <div ng-if="$ctrl.selectedLowerTab === 'input'" id="input" class="processDiagram-leftPanel-LowerTab-detail-select">
+              <div class="processDiagram-leftPanel-LowerTab-display" ng-if="$ctrl.activityInput && $ctrl.activityInput.length > 0">
+                <ul class="input_output_switchbar">
+                  <li>
+                    <span class="fa fa-copy fa-2x" ng-click="$ctrl.inputOutputFormatter.copyToClipboard($ctrl.activityInput, $ctrl.selectedLowerTab)"></span>
+                  </li>
+                  <li>
+                    <span class="fa fa-download fa-2x" ng-click="$ctrl.inputOutputFormatter.downloadInputOutput($ctrl.activityInput, $ctrl.selectedLowerTab, $ctrl.selectedActivityConfData.name)"></span>
+                  </li>
+                </ul>
+              </div>
+              <format-xml data="$ctrl.activityInput" id="inputSection" type="'inputSection'"></format-xml>
+            </div>
+            <div ng-if="$ctrl.selectedLowerTab === 'output'" id="output" class="processDiagram-leftPanel-LowerTab-detail-select">
+              <div class="processDiagram-leftPanel-LowerTab-display" ng-if="$ctrl.activityOutput && $ctrl.activityOutput.length > 0">
+                <ul class="input_output_switchbar">
+                  <li>
+                    <span class="fa fa-copy fa-2x" ng-click="$ctrl.inputOutputFormatter.copyToClipboard($ctrl.activityOutput,$ctrl.selectedLowerTab)"></span>
+                  </li>
+                  <li>
+                    <span class="fa fa-download fa-2x" ng-click="$ctrl.inputOutputFormatter.downloadInputOutput($ctrl.activityOutput, $ctrl.selectedLowerTab, $ctrl.selectedActivityConfData.name)"></span>
+                  </li>
+                </ul>
+              </div>
+              <format-xml data="$ctrl.activityOutput" id="outputSection" type="'outputSection'"></format-xml>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

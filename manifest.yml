@@ -1,0 +1,11 @@
+---
+applications:
+- name: com.tibco.bwce.monitoring
+  command: node server/node-server.js
+  memory: 512M
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  services:
+   - bwcemon_mysql
+  env: 
+    PERSISTENCE_TYPE: mysql
+    AUTHENTICATION_MODE: none

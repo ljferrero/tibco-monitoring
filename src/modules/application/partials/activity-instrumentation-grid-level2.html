@@ -1,0 +1,56 @@
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bw_lv2_process-Title padding-zero">
+        {{$ctrl.monLabels.application.processes.activity_instrumentation}}
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 activity-instrumentation">
+        <div class="refresh pull-right" >
+                <ul class="app_header_refresh margin10">
+                        <li>
+                            <div class="header_refresh_title" ng-class="{disabled: loading}">
+                                Last updated {{$ctrl.lastUpdateTime | date: 'HH:mm:ss'}}
+                            </div>
+                        </li>
+                        <li title="Refresh Stats">
+                            <div class="header_refresh_btn" ng-click="$ctrl.refreshGridData()"></div>
+                        </li>
+                    </ul>
+        </div>
+    <table class="bw_lv2_process_list">
+        <tr>
+            <td class="activity_list-tip {{icon.header}}" colspan="{{icon.colSpan}}" ng-repeat="icon in $ctrl.activityListHeader">
+                <div ng-if="!icon.childGroup">{{icon.header}}</div>
+                <div class="activity_list_childGroup-tip" ng-if="icon.childGroup">
+                    <div>{{icon.header}}</div>
+                    <table>
+                        <tr>
+                            <td ng-repeat="childGroup in icon.childGroup">
+                                {{childGroup.header}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr ng-if="$ctrl.activityInfoList.length === 0">
+            <td colspan="{{$ctrl.activityListHeader.length}}">
+                <div class="cell_content no-records-row">No data available</div>
+            </td>
+        </tr>
+        <tr ng-repeat="activitydata in $ctrl.infoList=($ctrl.activityInfoList | filter : {pkg : $ctrl.selectedPackage} |filter : {trimmedProcessName : $ctrl.selectedProcess})">
+            <td class="activity_list-val {{icon.header}}_val" colspan="{{icon.colSpan}}" ng-repeat="icon in $ctrl.activityListHeader">
+                <div ng-if="!icon.childGroup" class="bw-lv2_process_first_col" title="{{activitydata[icon.property]}}">{{activitydata.hasOwnProperty(icon.property) ? activitydata[icon.property] : $ctrl.emptyColumnValue}}</div>
+                <div ng-if="icon.childGroup">
+                    <table>
+                        <tr>
+                            <td ng-repeat="childGroup in icon.childGroup">
+                                {{activitydata.hasOwnProperty(childGroup.property) ? activitydata[childGroup.property] : $ctrl.emptyColumnValue}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </div>
+</div>

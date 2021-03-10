@@ -1,0 +1,59 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero config-column1">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 padding-zero config-column2"  ng-show="!$ctrl.hideLeftPanel">
+        <div class="bw_configView_leftPanel_toggleArrow" ng-click="$ctrl.LeftPanelToggle()">
+            <i ng-class="!$ctrl.hideLeftPanel?'toggle_icon toggle_icon_toLeft panel_arrow_false':''"></i>
+        </div>
+        <div class="cool_filter_wrapper">
+            <a class="add-on" href="javascript:void(0);">
+                <i class="search_icon"></i>
+            </a>
+            <input type="text" class="search_input"
+                   ng-change="$ctrl.setFilterDataLength()"
+                   ng-model="$ctrl.searchText"
+                   placeholder="Filter"/>
+            <i class="filter_reset" ng-click="$ctrl.searchText=''"
+               ng-if="$ctrl.searchText.length > 0">
+            </i>
+        </div>
+        <div class="config-package">
+            <ul class="list-group">
+                <li ng-click="$ctrl.selectAppnode(node.name)" ng-class="$ctrl.selectedAppnode === node.name? 'list-group-item active':'list-group-item'" ng-repeat="node in $ctrl.filterNodes = ($ctrl.nodes | orderBy: 'name' | filter: $ctrl.searchText)">
+                    <span class="bw_configView_leaf_Label" title="{{node.name}}">{{node.name}}</span>
+                </li>
+            </ul>
+            <div ng-show="$ctrl.filterNodes.length === 0" class="empty_data">
+                <span>No matching nodes found.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padding-zero config-column2-toggle"  ng-show="$ctrl.hideLeftPanel">
+        <div class="bw_configView_leftPanel_toggleArrow" ng-click="$ctrl.LeftPanelToggle()">
+            <i ng-class="$ctrl.hideLeftPanel?'toggle_icon toggle_icon_toRight panel_arrow_true':''"></i>
+        </div>
+    </div>
+    <div ng-class="!$ctrl.hideLeftPanel?'col-lg-10 col-md-9 col-sm-9 col-xs-8 padding-zero config-table':'col-lg-11 col-md-11 col-sm-11 col-xs-11 padding-zero config-table-toggle'">
+        <div class="col-lg-12 col-md-12 col-sm-12 column-margin" >
+            <div class="list-tree-icon-view">
+                <div class="col-lg-12 col-md-11 col-sm-10 col-xs-10 padding-zero">
+                    <ul class="bw_configview_tree_switch_list clearfix ng-scope pull-right">
+                        <li>
+                            <a ng-click="$ctrl.switchConfigView('treeView')" title="tree view"
+                               ui-sref="applications.application.configDetails({viewType: $ctrl.globalVariables.viewType, containerName: $ctrl.globalVariables.configDefaultContainer, configView: $ctrl.globalVariables.configView})"
+                                ui-sref-opts="{reload:true}">
+                                <i ng-class="$ctrl.globalVariables.configView === 'treeView'? 'bw_configview_tree active' : 'bw_configview_tree' "></i>
+                            </a>
+                        </li>
+                        <li class="pipe">|</li>
+                        <li><a ng-click="$ctrl.switchConfigView('listView')" title="list view"
+                               ui-sref="applications.application.configDetails({viewType: $ctrl.globalVariables.viewType, containerName: $ctrl.globalVariables.configDefaultContainer, configView: $ctrl.globalVariables.configView})"
+                               ui-sref-opts="{reload:true}">
+                            <i ng-class="$ctrl.globalVariables.configView === 'listView'?'bw_configview_list active':'bw_configview_list'"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <grid class="config-list-view" ng-if="$ctrl.globalVariables.configView === 'listView'" grid-header="$ctrl.appInstanceGridHeader" route-state-object ="$ctrl.routeStateObject" grid-data-map="$ctrl.appInstanceDataMap"></grid>
+            <grid class="config-tree-view" ng-if="$ctrl.globalVariables.configView === 'treeView'" grid-header="$ctrl.appInstanceGridHeader" route-state-object ="$ctrl.routeStateObject" grid-data-map="$ctrl.appInstanceDataMap" tree-view= true></grid>
+        </div>
+    </div>
+</div>

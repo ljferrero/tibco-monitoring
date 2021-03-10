@@ -1,0 +1,148 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+    <div class="refresh pull-right">
+            <ul class="app_header_refresh">
+                    <li>
+                        <div class="header_refresh_title" ng-class="{disabled: loading}">
+                            Last updated {{$ctrl.lastUpdateTime | date: 'HH:mm:ss'}}
+                        </div>
+                    </li>
+                    <li title="Refresh Stats">
+                        <div class="header_refresh_btn" ng-click="$ctrl.refreshGridData()"></div>
+                    </li>
+                </ul>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="instrumentation_table">
+                            <thead>
+                                <tr>
+                                    <th>Process Instances</th>
+                                    <th>Elapsed Time</th>
+                                    <th>Execution Time</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+                <tr ng-if="$ctrl.processInfoList.length === 0">
+                    <td colspan="{{$ctrl.processInfoList.length}}">
+                        <div class="cell_content no-records-row">No data available.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="instrumentation_table">
+                            <tbody>
+                                <tr ng-repeat="info in $ctrl.processInfoList | filter : {pkg : $ctrl.selectedPackage}  | filter: { trimmedProcessName: $ctrl.selectedProcess}: true">
+                                    <td>
+                                    <table class="instrumentation_table inner_table">
+                                            <tr>
+                                                <td>
+                                                    <span>Created:</span>
+                                                    <span>{{info.hasOwnProperty('created') ? info.created : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Completed:</span>
+                                                    <span>{{info.hasOwnProperty('completed') ? info.completed : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Faulted:</span>
+                                                    <span>{{info.hasOwnProperty('faulted') ? info.faulted : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Suspended:</span>
+                                                    <span>{{info.hasOwnProperty('suspended') ? info.suspended : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                    <table class="instrumentation_table inner_table">
+                                            <tr>
+                                                <td>
+                                                    <span>Average:</span>
+                                                    <span>{{info.hasOwnProperty('averageElapsedTime') ? info.averageElapsedTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Max:</span>
+                                                    <span>{{info.hasOwnProperty('maxElapsedTime') ? info.maxElapsedTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Min:</span>
+                                                    <span>{{info.hasOwnProperty('minElapsedTime') ? info.minElapsedTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Recent:</span>
+                                                    <span>{{info.hasOwnProperty('recentElapsedTime') ? info.recentElapsedTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Total:</span>
+                                                    <span>{{info.hasOwnProperty('totalElapsedTime') ? info.totalElapsedTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                    <table class="instrumentation_table inner_table">
+                                            <tr>
+                                                <td>
+                                                    <span>Average:</span>
+                                                    <span>{{info.hasOwnProperty('averageExecutionTime') ? info.averageExecutionTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Max:</span>
+                                                    <span>{{info.hasOwnProperty('maxExecutionTime') ? info.maxExecutionTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Min:</span>
+                                                    <span>{{info.hasOwnProperty('minExecutionTime') ? info.minExecutionTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Recent:</span>
+                                                    <span>{{info.hasOwnProperty('recentExecutionTime') ? info.recentExecutionTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Total:</span>
+                                                    <span>{{info.hasOwnProperty('totalExecutionTime') ? info.totalExecutionTime : $ctrl.emptyColumnValue}}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<!-- <div class="date-widget date-area" ng-click="toggleDate()">
+    <div class="date-display date-area">
+         <div class="date-div date-area"><em>{{model | date:'MM/dd/yyyy'}}</em></div> 
+        <div class="date-switcher date-area"></div>
+    </div>
+    <div class="date-panel date-area" ng-show="isShown">
+        <div uib-timepicker ng-model="model" hour-step="1" minute-step="1" show-meridian="false"></div>
+    </div>
+</div> -->
+
+<div class="time-widget time-area">
+    <div class="time-display time-area" ng-click="toggleTime()">
+        <div class="time-div time-area"><em>{{model | date:'HH:mm:ss'}}</em></div> 
+        <div class="time-switcher time-area"></div>
+    </div>
+    <ul class="time-panel time-area" ng-show="shouldShow()">
+            <div uib-timepicker ng-model="model" hour-step="1" minute-step="1" show-seconds="true" show-meridian="false"></div>
+    </ul>
+</div>
+  <!-- <time-picker model="filterDate.startDate" callback="filterDate.updateDate"></time-picker> -->

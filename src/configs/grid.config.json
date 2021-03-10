@@ -1,0 +1,649 @@
+{
+  "grid": {
+    "appNodes": {
+      "columns": [
+        {
+          "id": "checkBox",
+          "label": "checkBox",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": false,
+          "isDefaultSortable": false,
+          "isSearchable": false
+        },
+        {
+          "id": "name",
+          "label": "Name",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "state",
+          "label": "Status",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "configState",
+          "label": "Config State",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "uptime",
+          "label": "Uptime",
+          "order": 5,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "host",
+          "label": "Machine",
+          "order": 6,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "port",
+          "label": "Port",
+          "order": 7,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+    },
+    "applications": {
+      "columns": [
+        {
+          "id": "name",
+          "label": "Name",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "state",
+          "label": "Status",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "version",
+          "label": "App Version",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+                {
+          "id": "appnodesCount",
+          "label": "Instance(s)",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "order": 5,
+          "isVisible": false,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "deploymentState",
+          "label": "Deployment State",
+          "order": 6,
+          "isVisible": false,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+    },
+    "appInstance": {
+      "columns": [
+        {
+          "id": "name",
+          "label": "Name",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "state",
+          "label": "Status",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "appnodeName",
+          "label": "Instance Id",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "configState",
+          "label": "Config State",
+          "order": 4,
+          "isVisible": false,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "logbackFile",
+          "label": "Logback File",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": false,
+          "isDefaultSortable": false,
+          "isSearchable": false
+        },
+        {
+          "id": "productVersion",
+          "label": "Product Version",
+          "order": 5,
+          "isVisible": true,
+          "isSortable": false,
+          "isDefaultSortable": false,
+          "isSearchable": false
+        },
+        {
+          "id": "instanceStatsCollection",
+          "label": "Instance Stats Collection",
+          "order": 6,
+          "isVisible": true,
+          "isSortable": false,
+          "isDefaultSortable": false,
+          "isSearchable": false
+        }
+      ]
+    },
+    "appNodes_graph":{
+      "columns": [
+        {
+          "id": "Running",
+          "label": "Running",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": false,
+          "isDefaultSortable": false,
+          "isSearchable": false
+        },
+        {
+          "id": " ",
+          "label": " ",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "Created",
+          "label": "Created",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "Running",
+          "label": "Running",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "Faulted",
+          "label": "Faulted",
+          "order": 5,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "Cancelled",
+          "label": "Cancelled",
+          "order": 6,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "Scheduled",
+          "label": "Scheduled",
+          "order": 7,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "Pagedout",
+          "label": "Pagedout",
+          "order": 7,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+    },
+    "endPoints": {
+      "rest": {
+        "columns": [
+        {
+          "id": "url",
+          "label": "EndPoint URL",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "HTTPMethods",
+          "label": "HTTP Methods",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "ClientFormat",
+          "label": "Client Formats",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "component",
+          "label": "Component",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "service",
+          "label": "Service",
+          "order": 4,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+      },
+      "http": {
+        "columns": [
+        {
+          "id": "url",
+          "label": "EndPoint URL",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "component",
+          "label": "Component",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "service",
+          "label": "Service",
+          "order": 3,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+      },
+      "soap": {
+        "http": {
+          "columns": [
+            {
+              "id": "url",
+              "label": "EndPoint URL",
+              "order": 1,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": true,
+              "isSearchable": true
+            },
+            {
+              "id": "SOAP Version",
+              "label": "SOAP Version",
+              "order": 2,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "Style",
+              "label": "Style",
+              "order": 3,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "Encoding",
+              "label": "Encoding",
+              "order": 4,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "component",
+              "label": "Component",
+              "order": 5,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "service",
+              "label": "Service",
+              "order": 6,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            }
+          ]
+        },
+        "jms": {
+          "columns": [
+            {
+              "id": "url",
+              "label": "EndPoint URL",
+              "order": 1,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": true,
+              "isSearchable": true
+            },
+            {
+              "id": "MesasgeType",
+              "label": "Message Type",
+              "order": 2,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "Style",
+              "label": "Style",
+              "order": 3,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "Encoding",
+              "label": "Encoding",
+              "order": 4,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "AckMode",
+              "label": "Ack Mode",
+              "order": 5,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "SOAP Version",
+              "label": "SOAP Version",
+              "order": 6,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "component",
+              "label": "Component",
+              "order": 7,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            },
+            {
+              "id": "service",
+              "label": "Service",
+              "order": 8,
+              "isVisible": true,
+              "isSortable": true,
+              "isDefaultSortable": false,
+              "isSearchable": true
+            }
+          ]
+        }
+      }
+    },
+    "activityInstrumentation" : {
+      "columns" : [
+        {
+          "header": "activityName" ,
+          "property" : "activityName"
+        },
+        {
+          "header": "executed" ,
+          "property": "executed"
+        },
+        {
+          "header": "faulted" ,
+          "property": "faulted"
+        },
+        {
+          "header": "recentStatus" ,
+          "property": "recentStatus"
+        },
+        {
+          "header": "ElapsedTime" ,
+          "childGroup" : [
+            { "header" : "max", "property": "maxElapsedTime"},
+            { "header" : "min", "property": "minElapsedTime"},
+            { "header" : "total", "property": "totalElapsedTime"}
+          ]
+        },
+        {
+          "header": "ExecutionTime",
+          "childGroup" : [
+            { "header" : "max", "property": "maxExecutionTime"},
+            { "header" : "min", "property": "minExecutionTime"},
+            { "header" : "total", "property": "totalExecutionTime"}
+          ]
+        }
+      ]
+    },
+    "processInstance" : {
+      "columns" : [
+        {
+          "header": "Process Instance Id" ,
+          "property" : "processinstanceid"
+        },
+        {
+          "header": "Process Instance Job Id" ,
+          "property" : "processinstancejobid"
+        },
+        {
+          "header": "Appnode" ,
+          "property": "appnodename"
+        },
+        {
+          "header": "State" ,
+          "property": "processinstancestate"
+        },
+        {
+          "header": "Start Time" ,
+          "property": "processinstancestarttime"
+        },
+        {
+          "header": "DurationTime (ms)" ,
+          "property": "processinstancedurationtime"
+        },
+        {
+          "header": "EvalTime  (ms)" ,
+          "property": "processinstanceevaltime"
+        },
+        {
+          "header": "EndTime" ,
+          "property": "processinstanceendtime"
+        }
+      ]
+    },
+    "activityInstance" : {
+      "columns" : [
+        {
+          "header": "ActivityName" ,
+          "property" : "activityname"
+        },
+        {
+          "header": "State" ,
+          "property": "activitystate"
+        },
+        {
+          "header": "Timestamp" ,
+          "property": "timestmp"
+        },
+        {
+          "header": "StartTime" ,
+          "property": "activitystarttime"
+        },
+        {
+          "header": "DurationTime  (ms)" ,
+          "property": "activitydurationtime"
+        },
+        {
+          "header": "EvalTime  (ms)" ,
+          "property": "activityevaltime"
+        }
+      ]
+    },
+    "applicationProperties": {
+      "columns": [
+        {
+          "id": "key",
+          "label": "Property",
+          "order": 1,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": true,
+          "isSearchable": true
+        },
+        {
+          "id": "value",
+          "label": "Value",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        },
+        {
+          "id": "path",
+          "label": "Path",
+          "order": 2,
+          "isVisible": true,
+          "isSortable": true,
+          "isDefaultSortable": false,
+          "isSearchable": true
+        }
+      ]
+    }
+  },
+  "chart": [
+    {
+      "value": 1,
+      "color": "green",
+      "label": "running",
+      "highlight": "lightgreen"
+    },
+    {
+      "value": 0,
+      "color": "grey",
+      "label": "stopped",
+      "highlight": "lightgrey"
+    }
+  ],
+  "jobDetailsHeader": [
+    { "header": "Process Instance Id", "property": "processInstanceId", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "State", "property": "processInstanceState", "columnStyle": "normal", "dataStyle": "state" },
+    { "header": "Start Time", "property": "processInstanceStartTime", "columnStyle": "normal", "dataStyle": "moment" },
+    { "header": "End Time", "property": "processInstanceEndTime", "columnStyle": "normal", "dataStyle": "moment" },
+    { "header": "Duration Time(ms)", "property": "processInstanceDurationTime", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Timestamp", "property": "timestmp", "columnStyle": "normal", "dataStyle": "moment" },
+    { "header": "Eval Time (ms)", "property": "processInstanceEvalTime", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Instance Id", "property": "appnodeName", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Component Process Name", "property": "componentProcessName", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Domain", "property": "domainName", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Module Name", "property": "moduleName", "columnStyle": "normal", "dataStyle": "default" },
+    { "header": "Module Version", "property": "moduleVersion", "columnStyle": "normal", "dataStyle": "default" }
+]
+}

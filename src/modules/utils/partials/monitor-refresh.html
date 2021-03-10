@@ -1,0 +1,10 @@
+<ul class="app_header_refresh">
+    <li>
+        <div class="header_refresh_title" ng-class="{disabled: loading}">
+            Last updated {{$ctrl.lastUpdateTime | date: 'HH:mm:ss'}}
+        </div>
+    </li>
+    <li title="Refresh">
+        <div class="header_refresh_btn" ng-click="$ctrl.reload()"></div>
+    </li>
+</ul>

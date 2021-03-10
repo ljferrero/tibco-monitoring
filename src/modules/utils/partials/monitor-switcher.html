@@ -1,0 +1,14 @@
+<ul class="app_header_switchbar" ng-if="$ctrl.monLabels.view_type_button">
+    <li ui-sref-active="active" ng-repeat="btn in $ctrl.monLabels.view_type_button | orderBy: 'order'" ng-show="btn.isShow">
+        <a class="bw_icons_s-{{btn.id}}" ng-if="btn.id === 'default'"
+           title="{{btn.id}}"
+           ui-sref="applications.application.defaultDetails({viewType: btn.id, currentAppTab: $ctrl.globalVariables.appLevel2CurrentTab})"
+           ng-click="$ctrl.switcherClick(btn.id)">
+        </a>
+        <a class="bw_icons_s-{{btn.id}}" ng-if="btn.id === 'config'"
+           title="{{btn.id}}"
+           ui-sref="applications.application.configDetails({viewType: btn.id, containerName: $ctrl.globalVariables.configDefaultContainer, configView: $ctrl.globalVariables.configView})"
+           ng-click="$ctrl.switcherClick(btn.id)">
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,766 @@
+/**
+*  table view
+*  created  at: 8/15/2014
+**/
+
+.bw_table_view_nav-tabs {
+  background-color: #f7f8f8;
+  border-bottom: 1px solid #e2e5e7;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.bw_table_view_nav-tabs > li {
+  float: left;
+  margin-top: 8px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.bw_table_view_nav-tabs > li:first-child {
+  margin-left: 20px;
+}
+
+.app_monitor_viewlist .bw_table_view_nav-tabs > li:first-child {
+  margin-left: 10px;
+}
+
+.app_monitor_viewlist .bw_hybird_view_nav-tabs .pane-tab > div {
+  margin-top: 8px;
+  margin-right: 0px;
+  display: inline-block;
+  height: 40px;
+}
+
+.app_monitor_viewlist .bw_hybird_view_nav-tabs > li:first-child {
+  margin-left: 0px;
+}
+
+.app_monitor_viewlist .bw_hybird_view_nav-tabs > li > div:not(.active):first-child {
+  margin-left: 0px;
+}
+
+.app_monitor_viewlist .bw_hybird_view_nav-tabs > li > div.active:first-child {
+  margin-left: 10px;
+}
+
+.app_monitor_viewlist .bw_hybird_view_nav-tabs > li.graph_tab_button_switch {
+  margin-top: 8px;
+}
+
+.bw_table_view_nav-tabs > li > a,
+.app_monitor_viewlist .bw_table_view_nav-tabs > li > div > a {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: -1px;
+  /*border: 1px solid #E7E7E7;*/
+  text-decoration: none;
+}
+
+.bw_table_view_nav-tabs > li > a:hover {
+  color: #267fad;
+  background-color: initial;
+  border-color: #f7f8f8;
+}
+
+.bw_table_view_nav-tabs .active > a,
+.bw_table_view_nav-tabs .active > a:hover {
+  cursor: default;
+  color: #267fad;
+  background-color: #ffffff;
+  border: 1px solid #e2e5e7;
+  border-bottom: 1px solid #fff;
+  text-decoration: none;
+}
+
+.bw_table_view_operation {
+  margin-top: 5px;
+}
+
+/*
+ *  new layout of process tab content
+ */
+.bw_lv2_process-leftPanel {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 200px;
+  min-width: 160px;
+  height: 650px;
+  border: 1px solid #a9a9a9;
+  border-right-width: 0;
+  border-radius: 3px 0 0 3px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .bw_lv2_processView_filter {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #a9a9a9;
+    .cool_filter {
+      margin: 10px;
+      margin-top: 5px;
+    }
+  }
+  .empty_data {
+    margin-top: 150px;
+  }
+}
+
+.bw_lv2_process-leftPanel-drag {
+  width: 8px;
+  z-index: 11;
+  min-height: 650px;
+  position: absolute;
+  left: 200px;
+  background-color: #d3d3d3;
+  cursor: ew-resize;
+  border: 1px solid #a9a9a9;
+
+  &:hover {
+    background-color: #1581b9;
+  }
+  button {
+    position: relative;
+    color: white;
+    top: 300px;
+    height: 50px;
+    width: 6px;
+    padding: 0px;
+    border: none;
+    background-color: #a1a1a1;
+  }
+  i.arrow_right {
+    transform: rotate(-180deg);
+  }
+}
+
+.bw_lv2_process-content {
+  position: relative;
+  height: 650px;
+  margin-left: 209px;
+  border: 1px solid #a9a9a9;
+  border-left-width: 0;
+  border-radius: 0 3px 3px 0;
+  overflow: hidden;
+}
+.bw_lv2_process_history-content{
+  position: relative;
+  height: 650px;
+  margin-left: 206px;
+  border: 1px solid #a9a9a9;
+  border-left-width: 0;
+  border-radius: 0 3px 3px 0;
+  overflow: auto;
+}
+
+.bw_lv2_process_list, .bw_lv2_process_history-content .bw_lv2_process_history_list{
+  width:98%;
+  min-width: 800px;
+  margin-left: 1%;
+  /*margin-top: 20px;*/
+  font-size: 12px;
+  table-layout:fixed;
+  tr:first-child{
+	border-bottom: none;
+	text-indent: 5px;
+  }
+  td{
+    border-bottom:1px solid #cccccc;
+    text-align: center;
+    height:40px;
+  }
+  .activity_list-tip{
+    font-weight: bold;
+    table{
+      width:100%;
+      border:1px;
+      td{
+        height:20px;
+        border-bottom:0px solid #cccccc;
+      }
+    }
+    .activity_list_childGroup-tip{
+      div{
+        height:30px;
+        border-bottom:1px solid #cccccc;
+      }
+    }
+  }
+  .activity_list-val{
+    font-weight: normal;
+    table{
+      width:100%;
+      border:0px;
+      tr{
+        font-weight: normal;
+      }
+      tr:hover {
+        background: #d2e2ea;
+      }
+      td{
+        border-bottom:0px solid #cccccc;
+      }
+    }
+  }
+  .process_instance_history_list-val{
+    font-weight: normal;
+    table{
+      width:100%;
+      border:0px;
+      td{
+        border-bottom:0px solid #cccccc;
+      }
+    }
+    .name{
+      a{
+        color: #267fad;
+        text-decoration:underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .activity_list-tip,.activity_list-val,.process_instance_history_list-val{
+	width:80px;
+    div{
+      width:100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space:nowrap;
+      i{
+        float: left;
+        margin-top: 10px;
+        margin-left: 5px;
+        cursor: pointer;
+        height: 16px;
+        width: 16px;
+      }
+      span{
+        width:80px;
+        font-size:80%;
+        font-weight: 700;
+        display:inline-block;
+      }
+    }
+  }
+  .ElapsedTime,.ExecutionTime,.ElapsedTime-val,.ExecutionTime-val{
+	width:210px;
+  }
+  .ElapsedTime_child{
+	width:70px;
+  }
+  .bw-lv2_process_first_col{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+  }
+}
+.bw_lv2_activity_history-content{
+  position: relative;
+  height: auto;
+  border: 1px solid #a9a9a9;
+  border-radius:3px;
+  overflow: auto;
+  .bw_lv2_activity_history_list{
+    width:100%;
+    font-size: 12px;
+    table-layout:fixed;
+    tr:first-child{
+      border-bottom: none;
+      text-indent: 5px;
+    }
+    td{
+      border-bottom:1px solid #cccccc;
+      text-align: center;
+      height:40px;
+    }
+    .activity_history_list-tip{
+      font-weight: bold;
+    }
+    .activity_history_list-val{
+      width:80px;
+      height:40px;
+      div{
+        width:100%;
+        height:20px;
+        line-height:20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        i{
+          float: left;
+          margin-top: 10px;
+          margin-left: 5px;
+          cursor: pointer;
+          height: 16px;
+          width: 16px;
+        }
+        span{
+          width:80px;
+          font-size:80%;
+          font-weight: 700;
+          display:inline-block;
+        }
+      }
+    }
+  }
+}
+.empty-diagram {
+  width: 330px;
+  height: 125px;
+  position: relative;
+  background: #e2e2e2;
+  text-align: center;
+  vertical-align: baseline;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -moz-transform-origin: left top;
+  transform-origin: left top;
+  -webkit-transform-origin: left top;
+  line-height: 180px;
+  font-size: 14px;
+  color: #a5a5a5;
+  margin-top: 220px;
+  margin-left: 30%;
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px rgba(24, 23, 24, 0.15);
+  -webkit-box-shadow: 1px 1px 5px rgba(24, 23, 24, 0.15);
+  -moz-box-shadow: 1px 1px 5px rgba(24, 23, 24, 0.15);
+}
+
+.bw_lv2_process-rightPanel {
+  position: absolute;
+  top: 36px;
+  right: 0px;
+  z-index: 10;
+  width: 0px;
+  height: 613px;
+  border-radius: 3px;
+  background: #a5a5a5;
+  overflow: hidden;
+  -webkit-transition: width 0.3s; /* Safari */
+  transition: width 0.3s;
+}
+
+.bw_lv2_process-bottomOps {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
+  background: #fff;
+
+  .bw_lv2_process-tabListDragBar {
+    //  border: 1px solid #1581b9;
+    position: absolute;
+    bottom: 102px;
+    left: 0px;
+    width: 100%;
+    height: 5px;
+
+    &:hover {
+      background: #1581b9;
+      cursor: row-resize;
+    }
+  }
+  .bw_lv2_process-graph-tabListDragBar{
+    //  border: 1px solid #1581b9;
+    position: absolute;
+    bottom: 280px;
+    left: 0px;
+    width: 100%;
+    height: 5px;
+
+    &:hover {
+      background: #1581b9;
+      cursor: row-resize;
+    }
+  }
+  .tabListOnDrag {
+    background: #1581b9;
+    cursor: row-resize;
+  }
+
+  .bw_lv2_process-toggleBtn {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    margin-left: -25px;
+    width: 50px;
+    height: 8px;
+    line-height: 8px;
+    font-weight: bold;
+    padding: 0px;
+    background: #c8cbcc;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+
+    &:hover {
+      background: #1581b9;
+    }
+    .arrowDown {
+      transform: rotate(90deg);
+    }
+    .arrowUp {
+      transform: rotate(-90deg);
+    }
+
+  }
+
+  .bw_lv2_process-tabList {
+    background: #bbbbbb;
+    height: 30px;
+
+    li {
+      float: left;
+      margin-top: 5px;
+      margin-left: 10px;
+      padding: 0px 15px;
+      border-radius: 5px 5px 0px 0px;
+      height: 25px;
+      line-height: 25px;
+      font-weight: bold;
+      // background: #7D7D7D;
+      color: #fff;
+      cursor: pointer;
+      text-transform: capitalize;
+
+      &.tabFocused {
+        background: #fff;
+        color: #7d7d7d;
+      }
+    }
+  }
+
+  .bw_lv2_process-tabContent {
+    display: block;
+    width: 100%;
+    height: 72px;
+    overflow: hidden;
+    padding: 10px;
+
+    .tabContent {
+      display: none;
+      .generalCon, .configurationCon {
+        padding: 0px 5px;
+
+        .curIcon {
+          float: left;
+          margin-right: 25px;
+        }
+        /*
+                div{
+                  display: inline-block;
+
+                  &.nameInfo{
+                    width:180px;
+                    font-weight: bold;
+                  }
+                }*/
+        /*ul{
+          float: left;
+          li{
+            line-height: 22px;
+            border-bottom: 1px #cccccc solid;
+            div{
+              display: inline-block;
+              &.nameInfo{
+                width:180px;
+                font-weight: bold;
+              }
+            }
+          }
+        }*/
+
+      }
+
+      &.tabFocused {
+        display: block;
+
+      }
+    }
+
+  }
+  .bw_lv2_process-processInstContent {
+    display: block;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    padding: 10px;
+
+    .tabContent {
+      display: none;
+      .processinfoCon {
+        padding: 0px 5px;
+        .curIcon {
+          float: left;
+          margin-right: 25px;
+        }
+        .process_info_graph_left_view_table {
+          width: 100%;
+          .head_cell_content {
+            height: 40px;
+            border-bottom: 1px solid #cccccc;
+          }
+          .cell_content {
+            height: 40px;
+          }
+          .header_process_title {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+            border: 0px;
+          }
+        }
+        .process_info_graph_right_view {
+          float: left;
+          margin-left: 5%;
+          width: 60%;
+          .process_info_graph_right_view_table {
+            width: 100%;
+            .header_process_title {
+              width: 100%;
+              height: 50px;
+              font-size: 12px;
+              border: 0px;
+            }
+          }
+        }
+      }
+      &.tabFocused {
+        display: block;
+      }
+    }
+
+  }
+  .bw_lv2_process-graph-processInstContent {
+    display: block;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    padding: 10px;
+
+    .tabContent {
+      display: none;
+      .processinfoCon {
+        padding: 0px 5px;
+        .curIcon {
+          float: left;
+          margin-right: 25px;
+        }
+        .process_info_graph_left_view_table {
+          width: 100%;
+          .head_cell_content {
+            height: 40px;
+            border-bottom: 1px solid #cccccc;
+          }
+          .cell_content {
+            height: 40px;
+          }
+          .header_process_title {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+            border: 0px;
+          }
+        }
+        .process_info_graph_right_view {
+          float: left;
+          margin-left: 5%;
+          width: 60%;
+          .process_info_graph_right_view_table {
+            width: 100%;
+            .header_process_title {
+              width: 100%;
+              height: 50px;
+              font-size: 12px;
+              border: 0px;
+            }
+          }
+        }
+      }
+      &.tabFocused {
+        display: block;
+      }
+    }
+
+  }
+
+}
+
+.bw_lv2_process-Title {
+  background: #bbbbbb;
+  height: 35px;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+.bw_lv2_process_history-Title{
+  min-width: 960px;
+}
+.activity_history_modal_title{
+  font-weight: bold;
+  font-size:18px;
+}
+.bw_le2_process_history-body{
+  margin-top: 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  // min-width:960px;
+  .history_filter,.history_page_size{
+    display: inline-flex;
+    //  margin-top: 10px;
+    input{
+      height:30px;
+    }
+    .history_filter_val{
+      width:100%;
+    }
+  }
+  .history_page_size{
+    span{
+      width:65px;
+    }
+    .history_page_size_val{
+      width:80px;
+    }
+    .pageSizeErrorClass{
+      border: 1px solid red;
+    }
+    .bw_verification_wrap{
+      right: 23px;
+    }
+    .bw-tooltips2{
+      top:-4px;
+      right:13px;
+    }
+  }
+  .states_button{
+    float: right;
+    margin: 3px;
+    font-weight: normal;
+    font-size: 14px;
+    width:120px;
+    height:33px;
+    text-transform:capitalize;
+    span{
+      display:inline-block;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space:nowrap;
+    }
+    .states_button_type{
+      max-width:72px;
+    }
+    .states_button_badge_completed{
+      max-width:30px;
+    }
+    .states_button_badge_faulted{
+      max-width:52px;
+    }
+    .states_button_badge_all{
+      max-width:82px;
+    }
+  }
+  .bw_le2_process_history_data-panel{
+    min-width: 800px;
+    min-height:500px;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+}
+.panelShowToggle {
+  position: absolute;
+  right: 10px;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.bw_graphView_process_table tr {
+  text-align: center;
+}
+
+.bw_graphView_process_table tr td:first-child {
+  text-align: left;
+}
+.instrumentation_table {
+  tr:first-child
+  tr, tr:first-child {
+    border-bottom: 1px solid #d3d3d3;
+    height: 38px;
+    &hover {
+      background-color: red;
+    }
+    th {
+      text-align: left;
+    }
+    td {
+      font-weight: 500;
+      span:first-child {
+        margin-left: 0;
+      }
+      span:last-child {
+        margin-right: 45px;
+        float: right;
+      }
+    }
+  }
+  tr:hover {
+      background-color: #ffffff;
+    }
+}
+table.inner_table tr:last-child {
+    border-bottom: none;
+  }
+.stats-button-status {
+  font-weight: 600;
+  font-size: 11px;
+  padding: 0;
+  width: 35px;
+  background-color: #267fad;
+  color: white;
+}
+.status-button-off {
+  background-color: lightgrey;
+  color: black;
+}
+div.instance-stats-collection {
+  padding: 8px 4px 8px 4px;
+}
+.process-status-btn {
+  border-radius: 5px 0 0 5px;
+}
+.activity-instance-status-btn {
+  border-radius: 0 5px 5px 0;
+}
+
+
+.hybrid_view_row > td> table.stats>tbody {
+  border-left: 1px dotted grey;
+}
+.hybrid_view_row > td> table.stats {
+  margin-left: 8px;
+}
+.stats tbody tr td .status_bar i {
+  margin-left: 3px;
+}
+.row-selected, .stats .hybrid_view tr.row-selected{
+  background-color: #d2e2ea;
+}

@@ -1,0 +1,54 @@
+ <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="bw-modal-title" id="modal-title"><b>ProcessInstanceId: {{$ctrl.resolve.modalData.processInstanceJobId}}</b></h3>
+ </div>
+ <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column-margin">
+            <div class="panel-body activity-instance-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td ng-repeat="column in $ctrl.activityInstanceHeader  track by $index">
+                            <div class="head_cell_content cell-elip">
+                                    <span class="cell-value" title="{{column.header}}">
+                                        <b>{{column.header}}</b>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="row in $ctrl.activityInstanceData  track by $index">
+                        <td ng-switch= "key" ng-repeat="(key,value) in row">
+                            <div ng-switch-when = 'activitystate' class="cell_content">
+                                        <span class="status_label" ng-class="{'label-success': value === 'COMPLETED',
+                                            'label-primary': value === 'STARTED',
+                                            'label-warning': (value === 'CANCELLED'),
+                                            'label-danger': (value === 'FAULTED')}">
+                                            {{value}}
+                                        </span>
+                            </div>
+                            <div ng-switch-when = 'timestmp' class="cell_content">
+                                        <span>
+                                            <span class="cell-value" title="{{value | date:'yyyy/MM/dd HH:mm:ss'}}">{{value | date:'yyyy/MM/dd HH:mm:ss'}}</span>
+                                        </span>
+                            </div>
+                            <div ng-switch-when = 'activitystarttime' class="cell_content">
+                                        <span>
+                                            <span class="cell-value" title="{{value | date:'yyyy/MM/dd HH:mm:ss'}}">{{value | date:'yyyy/MM/dd HH:mm:ss'}}</span>
+                                        </span>
+                            </div>
+                            <div ng-switch-default class="cell_content">
+                                <span class="cell-value" title="{{value}}">{{value}}</span>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr ng-if="$ctrl.activityInstanceData.length === 0">
+                        <td colspan="{{$ctrl.activityInstanceHeader.length}}">
+                            <div class="cell_content no-records-row">{{::$ctrl.monLabels.grid.no_record}}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+ <div class="modal-footer">
+ </div>

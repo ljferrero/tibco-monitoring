@@ -1,0 +1,5 @@
+{
+    "key": "server-key.pem",
+    "cert": "server-cert.pem",
+    "passphrase":""
+}

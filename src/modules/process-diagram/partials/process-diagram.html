@@ -1,0 +1,151 @@
+
+<div class="bw_table_view_content clearfix tibco-grid column-margin">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padding-zero">
+            <div class="bw_table_view_operation">
+                <ul class="bw_configView_main_operateAllBtns">
+                    <li>
+                        <a class="" href="javascript:void(0)"
+                           ng-click="$ctrl.collapseToggleAll(true);">Collapse All</a>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a class="" href="javascript:void(0)"
+                           ng-click="$ctrl.collapseToggleAll(false);">Expand All</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero">
+            <div class="form-inline">
+                <b>{{$ctrl.monLabels.application.processes.container_dropDown}} : </b>
+                <select class="instance-id-dropdown form-control" ng-model="$ctrl.selectedAppnode" ng-change="$ctrl.selectAppnode($ctrl.selectedAppnode)" class="container_dropdown">
+                    <option ng-repeat="node in $ctrl.nodes track by $index">{{node.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 padding-zero pull-right" >
+            <div class="pull-right">
+                <ul class="app_subtab_switchbar_graph_process">
+                    <li ng-class="{'active': $ctrl.globalVariables.processTabViewType === 'processInfo'}" title="Process">
+                       <a class="glyphicon glyphicon-picture" ng-click="$ctrl.selectInfoTab('processInfo')"></a>
+                    </li>
+                    <li ng-class="{'active': $ctrl.globalVariables.processTabViewType === 'activityInfo'}" title="Activity Instrumentation">
+                        <a class="glyphicon glyphicon-th-list" ng-click="$ctrl.selectInfoTab('activityInfo')"></a>
+                    </li>
+                    <li ng-class="{'active': $ctrl.globalVariables.processTabViewType === 'instanceInfo'}" title="Process Instance">
+                        <a class="glyphicon glyphicon-time" ng-click="$ctrl.selectInfoTab('instanceInfo')"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero instrumentation-column2-margin">
+        <div class="instrumentation-column2 bw_lv2_process-leftPanel">
+            <div class="cool_filter_wrapper">
+                    <a class="add-on" href="javascript:void(0);">
+                        <i class="search_icon"></i>
+                    </a>
+                    <input type="text" class="search_input"
+                        ng-change="$ctrl.setFilterDataLength()"
+                        ng-model="$ctrl.searchText"
+                        placeholder="Filter"/>
+                    <i class="filter_reset" ng-click="$ctrl.searchText=''"
+                    ng-if="$ctrl.searchText.length > 0"></i>
+            </div>
+            <div>
+                <div ng-repeat="processPkg in $ctrl.processPkgs  | orderBy:'package'" ng-show="processPkg.show = (processPkg.gridData === undefined || processPkg.gridData.length > 0)">
+                    <div ng-click="processPkg.active = !processPkg.active" class="instrumentation-accordian bw_configView_leaf_topLabel">
+                        <i ng-class="processPkg.active? 'bw_icons_s-arrow-down' : 'bw_icons_s-arrow-right'"></i>
+                        <span title="{{processPkg.package}}">{{processPkg.package}}</span>
+                    </div>
+                    <ul class="list-group" ng-show="processPkg.active">
+                        <li ng-class="obj.processName === $ctrl.selectedProcess && processPkg.package === $ctrl.selectedPackage && $ctrl.isHighlightProcessSelection? 'list-group-item active' : 'list-group-item'"
+                                ng-click="$ctrl.selectProcess(processPkg.package,obj.processName)"
+                            ng-repeat="obj in processPkg.gridData = (processPkg.processNames | orderBy:'toString()' | filter: $ctrl.searchText) track by obj.id">
+                            <span class="bw_configView_leaf_Label" title="{{obj.processName}}">{{obj.processName}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-if="$ctrl.processPkgs.length === 0 " class="empty_data">
+                    <span>No data available.</span>
+                </div>
+                <div ng-if="!($ctrl.processPkgs.length ===0) && ($ctrl.processPkgs | filter : {show : true}).length === 0" class="empty_data">
+                    <span>No matching processes found. </span>
+                </div>
+            </div>
+        </div>
+        <div class="bw_lv2_process-leftPanel-drag" drag-panel>
+            <button type="button" class="bw_lv2_process-toggleBtn"><i><</i></button>
+        </div>
+        <div class="bw_lv2_process-content" ng-mousemove="$ctrl.tabListDragMove($event)" ng-mouseup="$ctrl.tabListDragOver()"
+        >
+            <div ng-show= "$ctrl.globalVariables.processTabViewType==='processInfo'">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bw_lv2_process-Title padding-zero">
+                    Process Diagram
+                    <span class="diagram-header-zoom-in-out" bw-slider svg-data="$ctrl.svgData">
+                    </span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 column-margin">
+                    <process-diagram id="svgDataDiagram" ng-if= "$ctrl.svgData" svg-data="$ctrl.svgData" current-svg-data="$ctrl.svgData"
+                    ></process-diagram>
+                </div>
+                    <footer class="bw_lv2_process-bottomOps">
+                        <div class="bw_lv2_process-tabListDragBar" ng-class="{tabListOnDrag: $ctrl.dragFlag}" ng-show="$ctrl.tabShowFlag"
+                            ng-mousedown="$ctrl.tabListDragStart($event)"></div>
+                        <button class="bw_lv2_process-toggleBtn" ng-click="$ctrl.isShow=!$ctrl.isShow;$ctrl.tabShowFlag=!$ctrl.tabShowFlag">
+                            <i ng-class="{'arrowDown': $ctrl.isShow, 'arrowUp': !$ctrl.isShow}"> > </i>
+                        </button>
+                        <ul class="bw_lv2_process-tabList clearfix">
+                            <li ng-class="{'tabFocused': $ctrl.globalVariables.selectedTabProcessDiagram === 'generalTab'}" ng-click="$ctrl.switchTab('generalTab')">
+                                General
+                            </li>
+                            <li ng-if="!$ctrl.globalVariables.isShowActivityTab" ng-class="{'tabFocused': $ctrl.globalVariables.selectedTabProcessDiagram === 'processTab'}" ng-click="$ctrl.switchTab('processTab')">
+                                Process Instrumentation
+                            </li>
+                            <li ng-if="$ctrl.globalVariables.isShowActivityTab" ng-class="{'tabFocused': $ctrl.globalVariables.selectedTabProcessDiagram === 'activityTab'}" ng-click="$ctrl.switchTab('activityTab')">
+                                Activity Instrumentation
+                            </li>
+                        </ul>
+                        <content class="bw_lv2_process-tabContent" ng-show="$ctrl.isShow">
+                                <div ng-if= "$ctrl.svgData && $ctrl.globalVariables.selectedTabProcessDiagram==='generalTab'" class="generalCon">
+                                    <general-tab-content data="$ctrl.svgData"></general-tab-content>
+                                </div>
+                                <div ng-show= "$ctrl.globalVariables.selectedTabProcessDiagram==='activityTab'" class="generalCon">
+                                    <activity-tab-content data="$ctrl.activityInstInfoOfGraphView"></activity-tab-content>
+                                </div>
+                                <div ng-show= "$ctrl.globalVariables.selectedTabProcessDiagram==='processTab'" class="generalCon">
+                                        <process-instrumentation-grid-level2></process-instrumentation-grid-level2>
+                                </div>
+                        </content>
+                    </footer>
+            </div>
+        <div ng-show= "$ctrl.globalVariables.processTabViewType === 'activityInfo'">
+            <activity-instrumentation-grid-level2></activity-instrumentation-grid-level2>
+        </div>
+            <div ng-show= "$ctrl.globalVariables.processTabViewType === 'instanceInfo'">
+                <process-instance-grid-level2></process-instance-grid-level2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

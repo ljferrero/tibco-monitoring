@@ -1,0 +1,46 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node2",
+            "request": "launch",
+            "name": "bw6mon runtime",
+            "program": "${workspaceRoot}/server/node-server.js",
+            "env": {
+                "NODE_ENV": "dev",
+                "PORT" : 8080
+            },
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node2",
+            "request": "launch",
+            "name": "Job Stats Test",
+            "program": "${workspaceRoot}/tests/jobstats.test.js",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8080/",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}/dist",
+            "sourceMapPathOverrides": {
+                "webpack:///*": "${workspaceRoot}/*"
+            }
+        },
+        {
+            "name": "Attach with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceRoot}/dist",
+            "sourceMapPathOverrides": {
+                "webpack:///*": "${workspaceRoot}/*"
+            }
+        }
+    ]
+}

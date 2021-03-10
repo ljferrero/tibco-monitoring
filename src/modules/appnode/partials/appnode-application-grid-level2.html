@@ -1,0 +1,103 @@
+<div ui-view="default">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <div class="appnodes content_level1">
+                <div class="app_header1">
+                    <ul class="app_header_nav clearfix">
+                        <li class="app_header_title">
+                            <span>{{$ctrl.$state.params.appName}} </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+            <div class="switcher pull-right">
+            </div>
+            <div class="refresh pull-right">
+                <refresh></refresh>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero column-margin app_level2_font_size">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-zero">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero app_level2_label">
+                <span>App Instances:</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-zero">
+                <span>Total (2)  Min (1) Running (1)</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero app_level2_label">
+                <span>Version:</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-zero">
+                <span>1.0</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero app_level2_label">
+                <span>Jobs:</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-zero">
+                <span>Created (936)  Running (0)  Faulted (0)  Cancelled (0)  Scheduled (1)  Pagedout (0)</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-zero">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero app_level2_label">
+                <span>Deployment State:</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-zero">
+                <span>Deployed</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padding-zero app_level2_label">
+                <span>Description:</span>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-zero">
+                <span>Test app</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-zero">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero app_level2_label">
+                <span>Stats Collection:</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>Process Instrumentation:</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>
+                    <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.processStatsStatus}" ng-click="$ctrl.processStatsStatus = !$ctrl.processStatsStatus">ON</span>
+                    <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status':! $ctrl.processStatsStatus}" ng-click="$ctrl.processStatsStatus = !$ctrl.processStatsStatus">OFF</span>
+                </span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>Process Instance:</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>
+                    <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.processInstanceStatsStatus}" ng-click="$ctrl.processInstanceStatsStatus = !$ctrl.processInstanceStatsStatus">ON</span>
+                    <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status':! $ctrl.processInstanceStatsStatus}" ng-click="$ctrl.processInstanceStatsStatus = !$ctrl.processInstanceStatsStatus">OFF</span>
+                </span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>Activity Instance:</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padding-zero">
+                <span>
+                    <span class="stats_btu_able disable_on" ng-class="{'stats_btn_status': $ctrl.activityStatsStatus}" ng-click="$ctrl.activityStatsStatus = !$ctrl.activityStatsStatus">ON</span>
+                    <span class="stats_btu_disable disable_off" ng-class="{'stats_btn_status':! $ctrl.activityStatsStatus}" ng-click="$ctrl.activityStatsStatus = !$ctrl.activityStatsStatus">OFF</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-zero application-column-margin-level2">
+        
+
+
+
+
+
+
+
+
+
+        
+    </div>
+</div>

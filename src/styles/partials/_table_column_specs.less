@@ -1,0 +1,1150 @@
+/**
+ *  table specs
+ *  created  at: 8/15/2014
+ **/
+table {
+  width: 100%;
+  border: none;
+  table-layout: fixed;
+}
+table tr {
+  border: none;
+  border-bottom: 1px solid #cccccc;
+}
+table tr:hover {
+  background: #d2e2ea;
+}
+/*table tr:first-child {
+  border-bottom: none;
+  //font-weight: bold;
+}*/
+table tr:first-child:hover,
+table.bw_hybird_view_table tr:first-child:hover {
+  background: #FFF;
+}
+table tr:hover .cell_bookmark_icon {
+  background-position: -120px -40px;
+}
+table tr:hover .white_gap_table {
+  background: #d2e2ea;
+}
+table .head_cell_content {
+  font-size: 13px;
+  color: #333333;
+  min-height: 22px;
+  padding-left: 4px;
+  border-bottom: 1px solid #777777;
+  margin-bottom: -1px;
+  text-align: left;
+  /*overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;*/
+  position: relative;
+}
+table.app_instance .head_cell_content {
+  height : 36px;
+}
+table .cell_content {
+  font-size: 12px;
+  padding: 10px 4px 10px 4px;
+  line-height: 21px;
+  min-height: 21px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+table .logback-cell-content {
+  display: inline-flex;
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+table .cell_content.create_property_name {
+  overflow: visible;
+  white-space: normal;
+}
+table .cell_content a {
+  color: #333333;
+  display: block;
+  text-decoration: underline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+table .cell_content a:hover {
+  color: #267fad;
+}
+table .cell_content .version_content,
+table .cell_content .deploy_state_label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+table .cell_content .bw_config_input_reset a {
+  display: inline-block;
+  color: #000;
+}
+table .cell_content .bw_config_input_reset a:hover {
+  color: #267fad;
+}
+.grid-lv1 {
+  position: relative;
+  margin: 20px 20px 50px 20px;
+  width: 98%;
+  height: 100%;
+}
+.grid-lv2,
+.hybrid-lv2 {
+  margin: 20px 20px 50px 20px;
+  background: #ffffff;
+  border: solid 1px #cfd4d7;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(119, 119, 119, 0.08);
+  min-width: 1024px;
+  min-height: 405px;
+}
+.table_lv2 .tibco-grid {
+  position: relative;
+  margin: 15px;
+}
+
+.tibco-grid-hidden{
+  overflow:hidden;
+}
+/* common for all page */
+table .check_box {
+  width: 28px;
+}
+
+table .colname {
+  width: 450px;
+}
+
+
+
+table .check_box .head_checkbox_wrapper {
+  height: 22px;
+  padding-left: 8px;
+}
+table .status {
+  width: 100px;
+  position: relative;
+}
+table .status .head_cell_content,
+table .machine .head_cell_content {
+  margin-left: 8px;
+  /* the gap in the header */
+}
+table .status .cell_content,
+table .machine .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+table .http_methods .head_cell_content {
+  margin-left: 8px;
+}
+table .http_methods .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+.soap_http table .soap_version .head_cell_content {
+  margin-left: 8px;
+}
+.soap_jms table .message_type .head_cell_content {
+  margin-left: 8px;
+}
+.soap_http table .soap_version .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+.soap_jms table .message_type .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+.soap_jms table .soap_version .white_gap_table {
+  width: 0px;
+}
+table .delivery_mode .head_cell_content {
+  margin-left: 8px;
+}
+table .delivery_mode .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+table .process .head_cell_content {
+  margin-left: 8px;
+}
+table .process .cell_content {
+  padding-left: 12px;
+  position: relative;
+  overflow: visible;
+}
+table .crud_buttons {
+  width: 32px;
+}
+table .action_buttons_btns {
+  /* for no action btns situation */
+  width: 0px;
+}
+table .action_buttons_2btns {
+  width: 75px;
+}
+table .action_buttons_4btns {
+  width: 110px;
+}
+table .hide_action_buttons div {
+  display: none;
+}
+.table_lv2.installations .machine .head_cell_content {
+  margin-left: 8px;
+}
+table .check_box .head_checkbox_wrapper,
+table .name .head_cell_content,
+table .minNodes .head_cell_content,
+table .ear_name .head_cell_content,
+table .file_icon .head_cell_content,
+table .tibco_home .head_cell_content,
+table .product_name .head_cell_content,
+table .endpoint_url .head_cell_content {
+  border-bottom: 1px solid #777777;
+  /* to make bottom border of the title in the first column bold */
+  margin-bottom: -1px;
+}
+table .check_box .head_checkbox_wrapper.config_check {
+  border-bottom: 1px solid #777777;
+}
+table .name .cell_content,
+table .tibco_home .cell_content,
+table .ear_name .cell_content,
+table .product_name .cell_content {
+  font-size: 12px;
+}
+table td:first-child .head_cell_content,
+table td:first-child .cell_content {
+  /* all first column padding left 8px */
+  padding-left: 8px;
+}
+table td:last-child .head_cell_content,
+table td:last-child .cell_content {
+  /* all last column padding right 8px */
+  padding-right: 8px;
+}
+table td.current_value .cell_content {
+  margin-right: 15px;
+}
+/* application archives : level 1 */
+.apparchives .grid-lv1 table .file_icon {
+  width: 22px;
+}
+.apparchives .grid-lv1 table .version {
+  width: 12%;
+  position: relative;
+}
+.apparchives .grid-lv1 table .version .head_cell_content {
+  margin-left: 6px;
+}
+.apparchives .grid-lv1 table .version .cell_content {
+  padding-left: 14px;
+  position: relative;
+  overflow: visible;
+}
+.apparchives .grid-lv1 table .app_name {
+  width: 22%;
+}
+.apparchives .grid-lv1 table .uploaded_time {
+  width: 130px;
+}
+.apparchives .grid-lv1 table .description {
+  width: 23%;
+}
+.apparchives .grid-lv1 table .operations {
+  width: 32px;
+}
+.apparchives .grid-lv1 table .operations .cell_content {
+  padding-left: 9px;
+}
+/* apparchives : level 2 : deployed_applications */
+.apparchives .grid-lv2 .deployed_applications table .appspace {
+  width: 19%;
+}
+.apparchives .grid-lv2 .deployed_applications table .deployment_state {
+  width: 140px;
+}
+.apparchives .grid-lv2 .deployed_applications table .appnodes {
+  width: 10%;
+  text-align: center;
+}
+.apparchives .grid-lv2 .deployed_applications table .appnodes .head_cell_content,
+.apparchives .grid-lv2 .deployed_applications table .appnodes .cell_content {
+  text-align: center;
+}
+.apparchives .grid-lv2 .deployed_applications table .profile_name {
+  width: 19%;
+}
+/* apparchives : level 2 : appspaces */
+.apparchives .grid-lv2 .appspaces table .minNodes {
+  width: 10%;
+}
+.apparchives .grid-lv2 .appspaces table .description {
+  width: 21%;
+}
+.apparchives .grid-lv2 .appspaces table .deployment_state {
+  width: 140px;
+}
+.apparchives .grid-lv2 .appspaces table .applications {
+  width: 11.5%;
+  text-align: center;
+}
+.apparchives .grid-lv2 .appspaces table .appnodes {
+  width: 10%;
+}
+.apparchives .grid-lv2 .appspaces table .minNodes .head_cell_content,
+.apparchives .grid-lv2 .appspaces table .minNodes .cell_content,
+.apparchives .grid-lv2 .appspaces table .applications .head_cell_content,
+.apparchives .grid-lv2 .appspaces table .applications .cell_content,
+.apparchives .grid-lv2 .appspaces table .appnodes .head_cell_content,
+.apparchives .grid-lv2 .appspaces table .appnodes .cell_content {
+  text-align: center;
+}
+/* apparchives : level 2 : components */
+.apparchives .grid-lv2 .components table .process {
+  width: 60%;
+}
+/* apparchives : config view */
+.apparchives .bw_configView .bw_configView_tableStruc table .operations {
+  width: 32px;
+  position: relative;
+}
+.apparchives .bw_configView .bw_configView_tableStruc table .operations .head_cell_content {
+  margin-left: 6px;
+}
+.apparchives .bw_configView .bw_configView_tableStruc table .operations .cell_content {
+  padding-left: 13px;
+}
+/* apparchives : config view profiles tab treeStuc */
+.apparchives .bw_configView .profiles .bw_configView_treeStruc .property_name {
+  width: 32%;
+}
+.apparchives .bw_configView .profiles .bw_configView_treeStruc .property_type {
+  width: 15%;
+}
+.apparchives .bw_configView .profiles .bw_configView_treeStruc .property_value_actual {
+  width: 53%;
+}
+.apparchives .bw_configView .profiles .bw_configView_treeStruc .property_value_raw {
+  width: 53%;
+}
+/* apparchives : config view profiles tab listStruc */
+.apparchives .bw_configView .profiles .bw_configView_listStruc .property_name {
+  width: 23%;
+}
+.apparchives .bw_configView .profiles .bw_configView_listStruc .property_type {
+  width: 12%;
+}
+.apparchives .bw_configView .profiles .bw_configView_listStruc .property_value {
+  width: 30%;
+}
+.apparchives .bw_configView .profiles .bw_configView_listStruc .property_path {
+  width: 35%;
+}
+/* appspaces : level 1 */
+.appspaces .grid-lv1 table .minNodes {
+  width: 10%;
+  text-align: center;
+}
+.appspaces .grid-lv1 table .description {
+  width: 16%;
+}
+.appspaces .grid-lv1 table .deployment_state {
+  width: 140px;
+}
+.appspaces .grid-lv1 table .applications {
+  width: 11%;
+  text-align: center;
+}
+.appspaces .grid-lv1 table .appnodes {
+  width: 9%;
+  text-align: center;
+}
+.appspaces .grid-lv1 table .bwagents {
+  width: 9%;
+  text-align: center;
+}
+.appspaces .grid-lv1 table .minNodes .head_cell_content,
+.appspaces .grid-lv1 table .minNodes .cell_content,
+.appspaces .grid-lv1 table .applications .head_cell_content,
+.appspaces .grid-lv1 table .applications .cell_content,
+.appspaces .grid-lv1 table .appnodes .head_cell_content,
+.appspaces .grid-lv1 table .appnodes .cell_content,
+.appspaces .grid-lv1 table .bwagents .head_cell_content,
+.appspaces .grid-lv1 table .bwagents .cell_content {
+  text-align: center;
+}
+/* appspaces : level 2 : applications */
+.appspaces .grid-lv2 .applications table .description {
+  width: 25%;
+}
+.appspaces .grid-lv2 .applications table .deployment_state {
+  width: 140px;
+}
+.appspaces .grid-lv2 .applications table .profile_name {
+  width: 21%;
+}
+/* level 2 : appnodes */
+.appspaces .grid-lv2 .appnodes table .config_state {
+  width: 118px;
+}
+.appspaces .grid-lv2 .appnodes table .uptime {
+  width: 118px;
+}
+.appspaces .grid-lv2 .appnodes table .machine {
+  width: 28%;
+}
+/* level 2 : agents */
+.appspaces .grid-lv2 .bwagents table .version {
+  width: 14%;
+}
+.appspaces .grid-lv2 .bwagents table .uptime {
+  width: 140px;
+}
+.appspaces .grid-lv2 .bwagents table .config_state {
+  width: 105px;
+}
+.appspaces .grid-lv2 .bwagents table .installation {
+  width: 24%;
+}
+/* level 2 : machines */
+.appspaces .grid-lv2 .machines table .os {
+  width: 26%;
+}
+.appspaces .grid-lv2 .machines table .ip_address {
+  width: 13%;
+}
+.appspaces .grid-lv2 .machines table .appnodes {
+  width: 11%;
+}
+.appspaces .grid-lv2 .machines table .bwagents {
+  width: 11%;
+}
+.appspaces .grid-lv2 .machines table .appnodes .head_cell_content,
+.appspaces .grid-lv2 .machines table .appnodes .cell_content,
+.appspaces .grid-lv2 .machines table .bwagents .head_cell_content,
+.appspaces .grid-lv2 .machines table .bwagents .cell_content {
+  text-align: center;
+}
+/* level 2 : installations */
+.appspaces .grid-lv2 .installations table .machine {
+  position: relative;
+  width: 22%;
+}
+.appspaces .grid-lv2 .installations table .machine .cell_content {
+  padding-left: 13px;
+}
+.appspaces .grid-lv2 .installations table .bwagent {
+  width: 22%;
+}
+.appspaces .grid-lv2 .installations table .location {
+  width: 34%;
+}
+/* applications : level 1 */
+.applications .grid-lv1 table .version {
+  width: 8%;
+}
+.applications .grid-lv1 table .description {
+  width: 17%;
+}
+.applications .grid-lv1 table .appspace {
+  width: 17%;
+}
+.applications .grid-lv1 table .deployment_state {
+  width: 130px;
+}
+.applications .grid-lv1 table .appnodes {
+  width: 10%;
+}
+.applications .grid-lv1 table .appnodes .head_cell_content,
+.applications .grid-lv1 table .appnodes .cell_content {
+  text-align: center;
+}
+/* applications : level 2 app instance */
+.applications .grid-lv2 .app_instances table .appnode {
+  width: 19%;
+}
+.applications .grid-lv2 .app_instances table .deployment_state {
+  width: 140px;
+}
+.applications .grid-lv2 .app_instances table .config_state {
+  width: 105px;
+}
+.applications .grid-lv2 .app_instances table .profile_name {
+  width: 19%;
+}
+/* applications : level 2 appnodes */
+.applications .grid-lv2 .appnodes table .config_state {
+  width: 110px;
+}
+.applications .grid-lv2 .appnodes table .uptime {
+  width: 115px;
+}
+.applications .grid-lv2 .appnodes table .bwagent {
+  width: 33%;
+}
+/* applications : level 2 endpoints */
+.applications .grid-lv2 .endpoints .soap_jms table .soap_version {
+  width: 110px;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .style {
+  width: 80px;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .encoding {
+  width: 75px;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .component {
+  width: 16%;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .service {
+  width: 16%;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .message_type {
+  width: 115px;
+}
+.applications .grid-lv2 .endpoints .soap_jms table .ack_mode {
+  width: 15%;
+}
+.applications .grid-lv2 .endpoints .soap_http table .soap_version {
+  width: 110px;
+}
+.applications .grid-lv2 .endpoints .soap_http table .publish_action {
+  width: 110px;
+}
+.applications .grid-lv2 .endpoints .soap_http table .style {
+  width: 85px;
+}
+.applications .grid-lv2 .endpoints .soap_http table .encoding {
+  width: 75px;
+}
+.applications .grid-lv2 .endpoints .soap_http table .component {
+  width: 19%;
+}
+.applications .grid-lv2 .endpoints .soap_http table .service {
+  width: 19%;
+}
+.applications .grid-lv2 .endpoints .rest table .http_methods {
+  width: 120px;
+}
+.applications .grid-lv2 .endpoints .rest table .publish_action {
+  width: 120px;
+}
+.applications .grid-lv2 .endpoints .rest table .client_format {
+  width: 105px;
+}
+.applications .grid-lv2 .endpoints .rest table .component {
+  width: 18%;
+}
+.applications .grid-lv2 .endpoints .rest table .service {
+  width: 18%;
+}
+/* applications : level 2 components */
+.applications .grid-lv2 .components table .process {
+  width: 40%;
+}
+/* appnodes : level 1 */
+.appnodes .grid-lv1 table .appspace {
+  width: 12%;
+}
+.appnodes .grid-lv1 table .config_state {
+  width: 100px;
+}
+.appnodes .grid-lv1 table .uptime {
+  width: 70px;
+}
+.appnodes .grid-lv1 table .applications {
+  width: 11%;
+}
+.appnodes .grid-lv1 table .applications .head_cell_content,
+.appnodes .grid-lv1 table .applications .cell_content {
+  text-align: center;
+}
+.appnodes .grid-lv1 table .machine {
+  width: 12%;
+}
+.appnodes .grid-lv1 table .bwagent {
+  width: 12%;
+}
+/* appnodes : level 2 app_instances */
+.appnodes .grid-lv2 .app_instances table .description {
+  width: 21%;
+}
+.appnodes .grid-lv2 .app_instances table .deployment_state {
+  width: 140px;
+}
+.appnodes .grid-lv2 .app_instances table .config_state {
+  width: 105px;
+}
+.appnodes .grid-lv2 .app_instances table .profile_name {
+  width: 17%;
+}
+/* bwagents : level 1 */
+.bwagents .grid-lv1 table .version {
+  width: 9%;
+}
+.bwagents .grid-lv1 table .uptime {
+  width: 95px;
+}
+.bwagents .grid-lv1 table .config_state {
+  width: 95px;
+}
+.bwagents .grid-lv1 table .appnodes {
+  width: 10%;
+}
+.bwagents .grid-lv1 table .machine {
+  width: 14.5%;
+}
+.bwagents .grid-lv1 table .installation {
+  width: 14.5%;
+}
+.bwagents .grid-lv1 table .appnodes .head_cell_content,
+.bwagents .grid-lv1 table .appnodes .cell_content {
+  text-align: center;
+}
+/* bwagents : level 2 appnodes */
+.bwagents .grid-lv2 .appnodes table .appspace {
+  width: 28%;
+}
+.bwagents .grid-lv2 .appnodes table .config_state {
+  width: 130px;
+}
+.bwagents .grid-lv2 .appnodes table .uptime {
+  width: 135px;
+}
+/* bwagents : level 2 appnodes : for no domain */
+.bwagents .grid-lv2 .appnodes table .domain {
+  width: 20%;
+}
+.bwagents .grid-lv2 .appnodes table .appspace.appspace_noDomain {
+  width: 20%;
+}
+.bwagents .grid-lv2 .appnodes table .config_state_noDomain {
+  width: 110px;
+}
+.bwagents .grid-lv2 .appnodes table .uptime_noDomain {
+  width: 115px;
+}
+/* machines : level 1 */
+.machines .grid-lv1 table .os {
+  width: 25%;
+}
+.machines .grid-lv1 table .ip_address {
+  width: 13%;
+}
+.machines .grid-lv1 table .appnodes {
+  width: 10%;
+}
+.machines .grid-lv1 table .bwagents {
+  width: 8%;
+}
+.machines .grid-lv1 table .installations {
+  width: 12%;
+}
+.machines .grid-lv1 table .appnodes .head_cell_content,
+.machines .grid-lv1 table .appnodes .cell_content,
+.machines .grid-lv1 table .bwagents .head_cell_content,
+.machines .grid-lv1 table .bwagents .cell_content,
+.machines .grid-lv1 table .installations .head_cell_content,
+.machines .grid-lv1 table .installations .cell_content {
+  text-align: center;
+}
+/* machines : level 2 appnodes */
+.machines .grid-lv2 .appnodes table .appspace {
+  width: 20%;
+}
+.machines .grid-lv2 .appnodes table .config_state {
+  width: 100px;
+}
+.machines .grid-lv2 .appnodes table .uptime {
+  width: 90px;
+}
+.machines .grid-lv2 .appnodes table .bwagent {
+  width: 20%;
+}
+/* machines : level 2 bwagents */
+.machines .grid-lv2 .bwagents table .version {
+  width: 11%;
+}
+.machines .grid-lv2 .bwagents table .uptime {
+  width: 100px;
+}
+.machines .grid-lv2 .bwagents table .config_state {
+  width: 105px;
+}
+.machines .grid-lv2 .bwagents table .appnodes {
+  width: 10%;
+}
+.machines .grid-lv2 .bwagents table .appnodes .head_cell_content,
+.machines .grid-lv2 .bwagents table .appnodes .cell_content {
+  text-align: center;
+}
+.machines .grid-lv2 .bwagents table .installation {
+  width: 22%;
+}
+/* machines : level 2 installations */
+.machines .grid-lv2 .installations table .bwagent {
+  position: relative;
+  width: 30%;
+}
+.machines .grid-lv2 .installations table .bwagent .head_cell_content,
+.machines .grid-lv2 .installations table .bwagent .cell_content a {
+  padding-left: 12px;
+}
+.machines .grid-lv2 .installations table .location {
+  width: 40%;
+}
+/* machines : level 2 appnodes : for no domain */
+.machines .grid-lv2 .appnodes table .domain {
+  width: 15.5%;
+}
+.machines .grid-lv2 .appnodes table .appspace.appspace_noDomain {
+  width: 15.5%;
+}
+.machines .grid-lv2 .appnodes table .config_state.config_state_noDomain {
+  width: 100px;
+}
+.machines .grid-lv2 .appnodes table .uptime.uptime_noDomain {
+  width: 90px;
+}
+.machines .grid-lv2 .appnodes table .bwagent.bwagent_noDomain {
+  width: 15.5%;
+}
+/* machines : level 2 bwagents : for no domain */
+.machines .grid-lv2 .bwagents table .version.version_noDomain {
+  width: 10.3%;
+}
+.machines .grid-lv2 .bwagents table .uptime.uptime_noDomain {
+  width: 115px;
+}
+.machines .grid-lv2 .bwagents table .config_state.config_state_noDomain {
+  width: 100px;
+}
+.machines .grid-lv2 .bwagents table .appnodes.appnodes_noDomain {
+  width: 11.2%;
+}
+.machines .grid-lv2 .bwagents table .appnodes.appnodes_noDomain .head_cell_content,
+.machines .grid-lv2 .bwagents table .appnodes.appnodes_noDomain .cell_content {
+  text-align: center;
+}
+.machines .grid-lv2 .bwagents table .installation.installation_noDomain {
+  width: 17.8%;
+}
+/* machines : level 2 installations : for no domain */
+.machines .grid-lv2 .installations table .bwagent.bwagent_noDomain {
+  position: relative;
+  width: 30%;
+}
+.machines .grid-lv2 .installations table .location.location_noDomain {
+  width: 40%;
+}
+/* machines : config view */
+.machines .bw_configView .ports .bw_configView_tableStruc .interface {
+  width: 18%;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .port {
+  width: 8%;
+  position: relative;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .port .head_cell_content,
+.machines .bw_configView .ports .bw_configView_tableStruc .port .cell_content {
+  padding-left: 12px;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .port .white_gap_table {
+  display: none;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .interface .head_cell_content,
+.machines .bw_configView .ports .bw_configView_tableStruc .port .head_cell_content {
+  border-bottom: 2px solid #777777;
+  margin-bottom: 0px;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .description {
+  width: 74%;
+  position: relative;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .description .head_cell_content {
+  margin-left: 8px;
+}
+.machines .bw_configView .ports .bw_configView_tableStruc .description .cell_content {
+  padding-left: 12px;
+}
+.machines .bw_configView .ports table .description .cell_content .property_value_content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* installation : level 1 */
+.installations .grid-lv1 table .machine {
+  position: relative;
+  width: 22%;
+}
+/*
+.installations .grid-lv1 table .machine .head_cell_content,
+.installations .grid-lv1 table .machine .cell_content a {
+	padding-left: 12px;
+}
+*/
+.installations .grid-lv1 table .bwagent {
+  width: 22%;
+}
+.installations .grid-lv1 table .location {
+  width: 34%;
+}
+/* installation : level 2 software: view common */
+.installations .grid-lv2 .software table.view_common .version {
+  position: relative;
+  width: 15%;
+}
+.installations .grid-lv2 .software table.view_common .version .head_cell_content,
+.installations .grid-lv2 .software table.view_common .version .cell_content {
+  margin-left: 8px;
+}
+.installations .grid-lv2 .software table.view_common .build {
+  width: 14%;
+}
+.installations .grid-lv2 .software table.view_common .hotfix {
+  position: relative;
+  width: 14%;
+}
+.installations .grid-lv2 .software table.view_common .extensions {
+  position: relative;
+  width: 15%;
+}
+/* installation : level 2 software : view common : palettes */
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .palettes table .version {
+  width: 10%;
+}
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .palettes table .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .palettes table .description {
+  width: 38%;
+}
+/* installation : level 2 software : view common : shared_resources */
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .shared_resources table .version {
+  width: 10%;
+}
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .shared_resources table .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_common .installation_lv2_expended .shared_resources table .description {
+  width: 38%;
+}
+/* installation : level 2 software : view extension */
+.installations .grid-lv2 .software table.view_extension .name .extention_name {
+  margin-left: 22px;
+}
+.installations .grid-lv2 .software table.view_extension .version {
+  position: relative;
+  width: 18%;
+}
+.installations .grid-lv2 .software table.view_extension .version .head_cell_content,
+.installations .grid-lv2 .software table.view_extension .version .cell_content {
+  margin-left: 8px;
+}
+.installations .grid-lv2 .software table.view_extension .build {
+  width: 18%;
+}
+.installations .grid-lv2 .software table.view_extension .hotfix {
+  width: 18%;
+}
+/* installation : level 2 software : view extension : palettes */
+.installations .grid-lv2 .software table.view_extension .installation_lv2_expended .palettes table .description {
+  width: 65%;
+}
+/* installation : level 2 software : view extension : shared_resources */
+.installations .grid-lv2 .software table.view_extension .installation_lv2_expended .shared_resources table .description {
+  width: 65%;
+}
+/* installation : level 2 software : view filter */
+.installations .grid-lv2 .software table.view_filter .version {
+  width: 11%;
+}
+.installations .grid-lv2 .software table.view_filter .build {
+  width: 11%;
+}
+.installations .grid-lv2 .software table.view_filter .hotfix {
+  width: 11%;
+}
+.installations .grid-lv2 .software table.view_filter .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_filter .product_version {
+  width: 14%;
+}
+/* installation : level 2 software : product level : view filter : palettes */
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .palettes table .version {
+  width: 10%;
+}
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .palettes table .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .palettes table .description {
+  width: 38%;
+}
+/* installation : level 2 software : product level : view filter : shared_resources */
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .shared_resources table .version {
+  width: 10%;
+}
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .shared_resources table .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_filter .installation_lv2_expended .shared_resources table .description {
+  width: 38%;
+}
+/* installation : level 2 software : inExtension : view filter */
+.installations .grid-lv2 .software table.view_filter.inExtension .version {
+  width: 18%;
+}
+.installations .grid-lv2 .software table.view_filter.inExtension .build {
+  width: 18%;
+}
+.installations .grid-lv2 .software table.view_filter.inExtension .hotfix {
+  width: 18%;
+}
+/* installation : level 2 software : product level : view filter : palettes */
+.installations .grid-lv2 .software table.view_filter.inExtension .installation_lv2_expended .palettes table .description {
+  width: 65%;
+}
+/* installation : level 2 software : product level : view filter : shared_resources */
+.installations .grid-lv2 .software table.view_filter.inExtension .installation_lv2_expended .shared_resources table .description {
+  width: 65%;
+}
+/* installation : level 2 software : view default (which is search table in palettes and shared resource view) */
+.installations .grid-lv2 .software table.view_default .version {
+  width: 10%;
+}
+.installations .grid-lv2 .software table.view_default .product_name {
+  width: 22%;
+}
+.installations .grid-lv2 .software table.view_default .description {
+  width: 38%;
+}
+/* configuration view table specs */
+/* appspace config view: general */
+.appspaces .bw_configView .general .bw_configView_tableStruc .property_name {
+  width: 30%;
+}
+.appspaces .bw_configView .general .bw_configView_tableStruc .default_value {
+  width: 30%;
+  position: relative;
+}
+.appspaces .bw_configView .general .bw_configView_tableStruc .current_value {
+  width: 40%;
+}
+/* appspace config view: user_defined */
+.appspaces .bw_configView .user_defined .bw_configView_tableStruc .property_name {
+  width: 30%;
+}
+.appspaces .bw_configView .user_defined .bw_configView_tableStruc .property_value {
+  width: 70%;
+  position: relative;
+}
+/* appspace config view: appnodes: general */
+.appspaces .bw_configView .appnodes .bw_configView_tableStruc.general .property_name {
+  width: 35%;
+}
+.appspaces .bw_configView .appnodes .bw_configView_tableStruc.general .default_value {
+  width: 30%;
+  position: relative;
+}
+.appspaces .bw_configView .appnodes .bw_configView_tableStruc.general .current_value {
+  width: 35%;
+}
+/* appspace config view: appnodes: user defined */
+.appspaces .bw_configView .appnodes .bw_configView_tableStruc.user_defined .property_name {
+  width: 35%;
+}
+.appspaces .bw_configView .appnodes .bw_configView_tableStruc.user_defined .property_value {
+  width: 65%;
+  position: relative;
+}
+/* application config view: general: in Tree */
+.applications .bw_configView .general .bw_configView_treeStruc .property_name {
+  width: 28%;
+}
+.applications .bw_configView .general .bw_configView_treeStruc .property_type {
+  width: 15%;
+  position: relative;
+}
+.applications .bw_configView .general .bw_configView_treeStruc .property_value {
+  width: 57%;
+}
+/* application config view: app instance in Tree */
+.applications .bw_configView .app_instances .bw_configView_treeStruc .property_name {
+  width: 32%;
+}
+.applications .bw_configView .app_instances .bw_configView_treeStruc .property_type {
+  width: 15%;
+  position: relative;
+}
+.applications .bw_configView .app_instances .bw_configView_treeStruc .property_value {
+  width: 53%;
+}
+/* application config view: general: in table */
+.applications .bw_configView .general .bw_configView_listStruc .property_name {
+  width: 20%;
+}
+.applications .bw_configView .general .bw_configView_listStruc .property_type {
+  width: 10%;
+  position: relative;
+}
+.applications .bw_configView .general .bw_configView_listStruc .property_value {
+  width: 40%;
+}
+.applications .bw_configView .general .bw_configView_listStruc .property_path {
+  width: 30%;
+}
+/* application config view: app instance in table */
+.applications .bw_configView .app_instances .bw_configView_listStruc .property_name {
+  width: 15%;
+}
+.applications .bw_configView .app_instances .bw_configView_listStruc .property_type {
+  width: 13%;
+  position: relative;
+}
+.applications .bw_configView .app_instances .bw_configView_listStruc .property_value {
+  width: 47%;
+}
+.applications .bw_configView .app_instances .bw_configView_listStruc .property_path {
+  width: 25%;
+}
+/* appnode config view: general */
+.appnodes .bw_configView .general .bw_configView_tableStruc .property_name {
+  width: 30%;
+}
+.appnodes .bw_configView .general .bw_configView_tableStruc .default_value {
+  width: 30%;
+  position: relative;
+}
+.appnodes .bw_configView .general .bw_configView_tableStruc .current_value {
+  width: 40%;
+}
+/* appnode config view: user_defined */
+.appnodes .bw_configView .user_defined .bw_configView_tableStruc .property_name {
+  width: 30%;
+}
+.appnodes .bw_configView .user_defined .bw_configView_tableStruc .property_value {
+  width: 70%;
+  position: relative;
+}
+/* bwagents config view: general */
+.bwagents .bw_configView .general .bw_configView_tableStruc .property_name {
+  width: 30%;
+}
+.bwagents .bw_configView .general .bw_configView_tableStruc .property_value {
+  width: 70%;
+  position: relative;
+}
+.bw_configView .bw_configView_tableStruc table .property_value .head_cell_content,
+.bw_configView .bw_configView_tableStruc table .property_value .cell_content,
+.bw_configView .bw_configView_tableStruc table .default_value .head_cell_content,
+.bw_configView .bw_configView_tableStruc table .property_value .cell_content,
+.bw_configView .bw_configView_tableStruc table .default_value .cell_content {
+  padding-left: 12px;
+}
+.hybrid_view tr.hybrid_view_row td.hybrid_view_column {
+  border-bottom:1px solid #cccccc;
+}
+.hybrid_view tr.hybrid_view_row td.hybrid_view_column div.white_gap_table{
+  background-color:initial;
+}
+.hybrid_view tr.hybrid_view_row td.hybrid_view_column:nth-child(1), .hybrid_view tr.hybrid_view_row td.hybrid_view_column:nth-child(2) {
+  border-bottom:none;
+}
+.hybrid_view tr.hybrid_view_row {
+  border-bottom:none;
+  background-color: #f7f8f8;
+}
+.hybrid_view tr.hybrid_view_row td.hybrid_view_column:nth-child(2) {
+  border-right:1px solid #cccccc;
+}
+.hybrid_view tr.hybrid_view_row {
+  border:none;
+}
+.hybrid_view tr.hybrid_view_row:last-child {
+  border-bottom:1px solid #cccccc;
+}
+.hybrid_view tr.hybrid_view_row td.hybrid_view_column .cell_content {
+  padding-top:4px;padding-bottom:4px;
+  font-weight:500;
+}
+table.hybrid_table tr.row_hover:first-child {
+  font-weight:500;
+}
+table.hybrid_table tr.row_hover:first-child:hover{
+  background-color: #fff;
+}
+table.hybrid_table tr.row_hover:hover td , table.hybrid_table tr.row_hover:hover td .white_gap_table{
+  background-color: #d2e2ea;
+}
+tr.parent_hybrid_table_row:hover, tr.parent_hybrid_table_row:hover .white_gap_table {
+  background: #fff;
+}
+
+.application_level2_header_tab tr {
+   border-bottom:none;
+}
+.application_level2_header_tab tr:hover {
+  background-color: #fff;
+}
+.application_level2_header_tab tr:first-child {
+  font-weight: normal;
+}
+div.no-records-row {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+.hidden-table-hover {
+  background-color: white;
+}
+
+.config-tree-view .grid_lv1 tr:nth-child(odd) ,.config-list-view  .grid_lv1 tr:nth-child(odd) {
+  background: #f1f1f1;
+}
+.config-tree-view .grid_lv1 tr:first-child ,.config-list-view .grid_lv1 tr:first-child {
+  background: white;
+}
+.config-tree-view .grid_lv1 table tr  ,.config-list-view .grid_lv1 table tr {
+  border: none;
+  border-bottom: 1px solid #cccccc;
+}
+.config-tree-view .grid_lv1 tr:nth-child(odd):hover ,.config-list-view .grid_lv1 tr:nth-child(odd):hover {
+  background: #d2e2ea;
+}
+.config-tree-view .grid_lv1 tr:first-child:hover ,.config-list-view .grid_lv1 tr:first-child:hover {
+  background: white;
+}
+.config-tree-view .grid_lv1 .cell_content {
+  margin-left: 10px;
+}
+.list-tree-icon-view {
+  width: 82%;
+}
+
+.hybrid_table i.bw_icons_s-chevron-show {
+  visibility: visible;
+}
+.hybrid_table i.bw_icons_s-chevron-right {
+   height: 22px;
+   width: 12px;
+  z-index: 1000;
+ }
+.hybrid_table i.bw_icons_s-chevron-down-tab {
+  height: 22px;
+  width: 12px;
+  z-index: 1000;
+}
